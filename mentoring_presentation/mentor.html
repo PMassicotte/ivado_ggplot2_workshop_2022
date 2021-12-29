@@ -28,6 +28,32 @@ class: center, middle, inverse, title-slide
 a {
   color: deepskyblue;
 }
+
+.column-left {
+  width: 60%;
+  float: left;
+  padding-top: 1em;
+  margin-right: 0em;
+}
+
+.column-right {
+  width: 40%;
+  float: right;
+  padding-top: 0em;
+}
+
+.inverse h1{
+	color: var(--inverse-header-color);
+	font-size: 100px;
+	/* font-size: "40em"; */
+}
+
+.inverse h2{
+	color: var(--inverse-header-color);
+	font-size: 70px;
+	/* font-size: "40em"; */
+}
+
 &lt;/style&gt;
 
 ## Who am I
@@ -35,11 +61,11 @@ a {
 Research associate at the Takuvik Joint International Laboratory under the supervision of Dr. Marcel Babin.
 
 &lt;center&gt;
-&lt;img src="img/takuvik-transparent.png"  height="250px"/&gt;
+&lt;img src="../img/takuvik-transparent.png"  height="250px"/&gt;
 &lt;/center&gt;
 
 &lt;center&gt;
-&lt;img src="img/cnrs.png"  height="100px"/&gt;&lt;img src="img/ulaval.png"  height="100"/&gt;
+&lt;img src="../img/cnrs.png"  height="100px"/&gt;&lt;img src="img/ulaval.png"  height="100"/&gt;
 &lt;/center&gt;
 
 ---
@@ -87,13 +113,13 @@ Understanding ecosystems functioning using data collected at high temporal and s
 &lt;center&gt;
 .pull-left[
 &lt;img src="https://darkedge.netlify.app/images/gallery/20201003_174241_v3_GB.jpg" height="350px" /&gt;
+&lt;small&gt;&lt;figcaption&gt;©Guislain Bécu&lt;/figcaption&gt;&lt;/small&gt;
 ]
 
 .pull-right[
 &lt;img src="https://darkedge.netlify.app/images/gallery/IMG_0456_v2_MH.jpg"  height="350px" /&gt;
+&lt;small&gt;&lt;figcaption&gt;©Marie-Hélène Forget&lt;/figcaption&gt;&lt;/small&gt;
 ]
-
-©Guislain Bécu ©Marie-Hélène Forget
 &lt;/center&gt;
 
 ---
@@ -102,7 +128,7 @@ Understanding ecosystems functioning using data collected at high temporal and s
 
 Remote sensing provides information on the optical properties of water masses.
 
-- *Organic matter &amp; biomass of phytoplankton*
+&lt;br&gt;
 
 .pull-left[
 &lt;center&gt;
@@ -126,17 +152,23 @@ It is also a useful tool to monitor the effects of climate changes in the Arctic
 
 ---
 
+class: inverse, center, middle
+
+# Mentoring opportunity
+
+---
+
 ## Mentoring opportunity
 
 - I am open to working with any kind of data. 
 
 - Can be related to (but not limited): 
 
-  - Environmental sciences,
+  - Environmental sciences
   
-  - Your master/Ph.D. project,
+  - Your master/Ph.D. project
   
-  - Any other fun datasets.
+  - Any other fun datasets
 
 ---
 
@@ -144,13 +176,19 @@ It is also a useful tool to monitor the effects of climate changes in the Arctic
 
 Ideally, the data for your project should have these properties:
 
+--
+
 - Passionate you!
 
-  - **Finding your own dataset can be an interesting/formative experience!**
+  - **Finding your dataset can be an interesting/formative experience!**
   
-- Large enough to practice your **data cleaning** and **data visualization** skills.
+  - I encourage you to find your own data. 
+  
+  - If you do not have ideas, we can brainstorm together.
+  
+--
 
-- xxx
+- Large enough to practice your **data cleaning** and **data visualization** skills.
 
 ---
 
@@ -158,165 +196,153 @@ Ideally, the data for your project should have these properties:
 
 class: inverse, center, middle
 
-# Nunavut ringed seal monitoring
+## Nunavut ringed seal monitoring
 
 &lt;center&gt;
-&lt;img src="https://bit.ly/3FzRG2p" alt="Ringed seal looking at you with sea ice in the background" width="700"&gt; 
-&lt;small&gt;
-&lt;figcaption&gt;https://commons.wikimedia.org/wiki/File:Pusa_hispida_(Osaka_Aquarium_KAIYUKAN).JPG&lt;/figcaption&gt;
-&lt;/small&gt;
+&lt;img src="https://bit.ly/3FzRG2p" alt="Ringed seal looking at you with sea ice in the background" width="600"&gt; 
+&lt;small&gt;&lt;figcaption&gt;@ https://commons.wikimedia.org/&lt;/figcaption&gt;&lt;/small&gt;
 &lt;/center&gt;
 
 ---
 
-## Monitoring localisations
+## Monitoring of the ringed seal population in the Arctic
 
-&lt;img src="mentor_files/figure-html/unnamed-chunk-3-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="mentor_files/figure-html/map_plot-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 ## Overview of the data
 
-The dataset contains a total of **2924 observations collected between 1990 and 2015** ([Data from the Government of Canada](https://open.canada.ca/data/en/dataset/1318c39f-74ca-4f8a-b81c-95e1694553eb/resource/5556ff66-8298-4190-929b-8a06a8ce2dc9)).
+Data from the Government of Canada: contains a total of **2924 observations collected between 1990 and 2015** across 16 communities. 
 
-- Key variables:
-
-  - Localisations (16 communities)
-  - Date of the measurement
-  - Age
-  - Sex
-  - Length (cm)
-  - Girth (cm)
-  - Weight (kg)
-  - Fat thickness (cm)
-  - Day of the year for melting/freezing of the sea ice
-
----
-
-## Examples of the data
-
+.column-left[
 &lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:left;background-color: #3c3c3c !important;color: #B25A56 !important;"&gt; sex &lt;/th&gt;
-   &lt;th style="text-align:right;background-color: #3c3c3c !important;color: #B25A56 !important;"&gt; year &lt;/th&gt;
-   &lt;th style="text-align:right;background-color: #3c3c3c !important;color: #B25A56 !important;"&gt; month &lt;/th&gt;
-   &lt;th style="text-align:right;background-color: #3c3c3c !important;color: #B25A56 !important;"&gt; length &lt;/th&gt;
-   &lt;th style="text-align:right;background-color: #3c3c3c !important;color: #B25A56 !important;"&gt; girth &lt;/th&gt;
-   &lt;th style="text-align:right;background-color: #3c3c3c !important;color: #B25A56 !important;"&gt; weight &lt;/th&gt;
-   &lt;th style="text-align:right;background-color: #3c3c3c !important;color: #B25A56 !important;"&gt; age &lt;/th&gt;
-   &lt;th style="text-align:right;background-color: #3c3c3c !important;color: #B25A56 !important;"&gt; agecat &lt;/th&gt;
+   &lt;th style="text-align:left;background-color: #3c3c3c !important;font-size: 14px;color: #B25A56 !important;"&gt; sex &lt;/th&gt;
+   &lt;th style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;color: #B25A56 !important;"&gt; year &lt;/th&gt;
+   &lt;th style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;color: #B25A56 !important;"&gt; month &lt;/th&gt;
+   &lt;th style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;color: #B25A56 !important;"&gt; length &lt;/th&gt;
+   &lt;th style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;color: #B25A56 !important;"&gt; girth &lt;/th&gt;
+   &lt;th style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;color: #B25A56 !important;"&gt; weight &lt;/th&gt;
+   &lt;th style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;color: #B25A56 !important;"&gt; age &lt;/th&gt;
+   &lt;th style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;color: #B25A56 !important;"&gt; agecat &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 18px;"&gt; F &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1993 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 107 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 85.40 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 37.38 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 14px;"&gt; F &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1993 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 107 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 85.40 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 37.38 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 18px;"&gt; M &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1993 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 104 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 81.58 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 34.39 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 14px;"&gt; M &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1993 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 104 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 81.58 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 34.39 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 18px;"&gt; F &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1993 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 105 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 84.01 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 35.85 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 14px;"&gt; F &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1993 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 105 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 84.01 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 35.85 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 18px;"&gt; M &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1993 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 109 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 84.99 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 38.04 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 14px;"&gt; M &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1993 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 109 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 84.99 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 38.04 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 18px;"&gt; F &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1993 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 127 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 99.16 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 54.55 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 14px;"&gt; F &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1993 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 127 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 99.16 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 54.55 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 18px;"&gt; F &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1993 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 95 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 76.99 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 28.75 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 14px;"&gt; F &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1993 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 95 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 76.99 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 28.75 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 18px;"&gt; F &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1993 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 123 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 96.43 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 50.83 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 14px;"&gt; F &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1993 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 123 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 96.43 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 50.83 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 18px;"&gt; M &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1993 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 128 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 97.79 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 53.72 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 14px;"&gt; M &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1993 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 128 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 97.79 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 53.72 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 18px;"&gt; F &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1993 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 116 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 91.63 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 44.67 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 14px;"&gt; F &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1993 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 116 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 91.63 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 44.67 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 18px;"&gt; F &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1993 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 128 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 99.84 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 55.50 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 18px;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;background-color: #3c3c3c !important;font-size: 14px;"&gt; F &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1993 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 128 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 99.84 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 55.50 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;background-color: #3c3c3c !important;font-size: 14px;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+]
+
+.column-right[
+&lt;img src="mentor_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 
 ## Possible questions
 
-Short list of questions that could be explored with this data:
+A short list of questions that could be explored with this data:
 
 --
 
@@ -335,12 +361,6 @@ Short list of questions that could be explored with this data:
 --
 
 - Fishery information (standing stock and food resources).
-
----
-
-## Test
-
-&lt;img src="mentor_files/figure-html/unnamed-chunk-5-1.png" width="60%" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

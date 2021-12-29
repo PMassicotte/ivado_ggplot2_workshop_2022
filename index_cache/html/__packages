@@ -1,4 +1,3 @@
-base
 tidyverse
 ggplot2
 tibble
@@ -12,6 +11,6 @@ ggpmthemes
 patchwork
 flipbookr
 fontawesome
-datasauRus
 palmerpenguins
+datasauRus
 paletteer

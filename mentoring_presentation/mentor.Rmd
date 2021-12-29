@@ -52,7 +52,7 @@ theme_update(
 library(xaringanthemer)
 style_mono_accent(
   base_color = "#203240",
-  header_font_google = google_font("Josefin Sans"),
+  header_font_google = google_font("Patrick Hand"),
   text_font_google = google_font("Montserrat", "500", "500i"),
   code_font_google = google_font("Fira Mono"),
   text_font_size = "24px",
@@ -62,7 +62,8 @@ style_mono_accent(
   header_color = "#b25a56", 
   title_slide_text_color = "#d6bf61",
   text_bold_color = "#b25a56",
-  text_bold_font_weight = 600
+  text_bold_font_weight = 600, 
+  inverse_background_color = "#232323"
 )
 ```
 
@@ -70,6 +71,32 @@ style_mono_accent(
 a {
   color: deepskyblue;
 }
+
+.column-left {
+  width: 60%;
+  float: left;
+  padding-top: 1em;
+  margin-right: 0em;
+}
+
+.column-right {
+  width: 40%;
+  float: right;
+  padding-top: 0em;
+}
+
+.inverse h1{
+	color: var(--inverse-header-color);
+	font-size: 100px;
+	/* font-size: "40em"; */
+}
+
+.inverse h2{
+	color: var(--inverse-header-color);
+	font-size: 70px;
+	/* font-size: "40em"; */
+}
+
 ```
 
 ## Who am I
@@ -77,11 +104,11 @@ a {
 Research associate at the Takuvik Joint International Laboratory under the supervision of Dr. Marcel Babin.
 
 <center>
-<img src="img/takuvik-transparent.png"  height="250px"/>
+<img src="../img/takuvik-transparent.png"  height="250px"/>
 </center>
 
 <center>
-<img src="img/cnrs.png"  height="100px"/><img src="img/ulaval.png"  height="100"/>
+<img src="../img/cnrs.png"  height="100px"/><img src="img/ulaval.png"  height="100"/>
 </center>
 
 ---
@@ -129,13 +156,13 @@ Understanding ecosystems functioning using data collected at high temporal and s
 <center>
 .pull-left[
 <img src="https://darkedge.netlify.app/images/gallery/20201003_174241_v3_GB.jpg" height="350px" />
+<small><figcaption>©Guislain Bécu</figcaption></small>
 ]
 
 .pull-right[
 <img src="https://darkedge.netlify.app/images/gallery/IMG_0456_v2_MH.jpg"  height="350px" />
+<small><figcaption>©Marie-Hélène Forget</figcaption></small>
 ]
-
-©Guislain Bécu ©Marie-Hélène Forget
 </center>
 
 ---
@@ -144,7 +171,7 @@ Understanding ecosystems functioning using data collected at high temporal and s
 
 Remote sensing provides information on the optical properties of water masses.
 
-- *Organic matter & biomass of phytoplankton*
+<br>
 
 .pull-left[
 <center>
@@ -191,17 +218,23 @@ df %>%
 
 ---
 
+class: inverse, center, middle
+
+# Mentoring opportunity
+
+---
+
 ## Mentoring opportunity
 
 - I am open to working with any kind of data. 
 
 - Can be related to (but not limited): 
 
-  - Environmental sciences,
+  - Environmental sciences
   
-  - Your master/Ph.D. project,
+  - Your master/Ph.D. project
   
-  - Any other fun datasets.
+  - Any other fun datasets
 
 ---
 
@@ -209,13 +242,19 @@ df %>%
 
 Ideally, the data for your project should have these properties:
 
+--
+
 - Passionate you!
 
-  - **Finding your own dataset can be an interesting/formative experience!**
+  - **Finding your dataset can be an interesting/formative experience!**
   
-- Large enough to practice your **data cleaning** and **data visualization** skills.
+  - I encourage you to find your own data. 
+  
+  - If you do not have ideas, we can brainstorm together.
+  
+--
 
-- xxx
+- Large enough to practice your **data cleaning** and **data visualization** skills.
 
 ---
 
@@ -232,20 +271,18 @@ df <- read_csv(file, locale = locale(encoding = "latin1")) %>%
 
 class: inverse, center, middle
 
-# Nunavut ringed seal monitoring
+## Nunavut ringed seal monitoring
 
 <center>
-<img src="https://bit.ly/3FzRG2p" alt="Ringed seal looking at you with sea ice in the background" width="700"> 
-<small>
-<figcaption>https://commons.wikimedia.org/wiki/File:Pusa_hispida_(Osaka_Aquarium_KAIYUKAN).JPG</figcaption>
-</small>
+<img src="https://bit.ly/3FzRG2p" alt="Ringed seal looking at you with sea ice in the background" width="600"> 
+<small><figcaption>@ https://commons.wikimedia.org/</figcaption></small>
 </center>
 
 ---
 
-## Monitoring localisations
+## Monitoring of the ringed seal population in the Arctic
 
-```{r, fig.height=5, out.width="55%", crop = TRUE}
+```{r, map_plot, fig.height=5, out.width="55%", crop = TRUE}
 canada <- ne_countries(country = "Canada", scale = "large", returnclass = "sf")
 
 # crsuggest::suggest_crs(canada)
@@ -273,24 +310,9 @@ ggplot() +
 
 ## Overview of the data
 
-The dataset contains a total of **`r nrow(df)` observations collected between 1990 and 2015** ([Data from the Government of Canada](https://open.canada.ca/data/en/dataset/1318c39f-74ca-4f8a-b81c-95e1694553eb/resource/5556ff66-8298-4190-929b-8a06a8ce2dc9)).
+Data from the Government of Canada: contains a total of **`r nrow(df)` observations collected between 1990 and 2015** across 16 communities. 
 
-- Key variables:
-
-  - Localisations (16 communities)
-  - Date of the measurement
-  - Age
-  - Sex
-  - Length (cm)
-  - Girth (cm)
-  - Weight (kg)
-  - Fat thickness (cm)
-  - Day of the year for melting/freezing of the sea ice
-
----
-
-## Examples of the data
-
+.column-left[
 ```{r}
 df %>%
   head(10) %>%
@@ -311,15 +333,21 @@ df %>%
   knitr::kable() %>% 
   kableExtra::kable_styling(full_width = FALSE) %>% 
   kableExtra::row_spec(0:10, background = "#3c3c3c") %>% 
-  kableExtra::row_spec(1:10, font_size = 18) %>% 
+  kableExtra::row_spec(0:10, font_size = 14) %>% 
   kableExtra::row_spec(0, color = "#B25A56")
 ```
+]
+
+.column-right[
+```{r, ref.label="map_plot", out.width="100%", crop = F}
+```
+]
 
 ---
 
 ## Possible questions
 
-Short list of questions that could be explored with this data:
+A short list of questions that could be explored with this data:
 
 --
 
@@ -338,14 +366,3 @@ Short list of questions that could be explored with this data:
 --
 
 - Fishery information (standing stock and food resources).
-
----
-
-## Test
-
-```{r, out.width="60%"}
-df %>% 
-  ggplot(aes(x = weight, y = length, color = sex)) +
-  geom_point() +
-  facet_wrap(~community_name)
-```
