@@ -1,0 +1,2 @@
+- Check the *msleep* data <https://ggplot2.tidyverse.org/reference/msleep.html>
+- General data visualization guidelines: <https://filwd.substack.com/p/clarity-and-aesthetics-in-data-visualization?r=38vna&utm_campaign=post&utm_medium=web&utm_source=>

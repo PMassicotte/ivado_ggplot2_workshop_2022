@@ -1,0 +1,2827 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Introduction to ggplot2</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Philippe Massicotte" />
+    <meta name="date" content="2022-01-26" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/robot-fonts.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <script src="libs/js-cookie/js.cookie.js"></script>
+    <script src="libs/peerjs/peerjs.min.js"></script>
+    <script src="libs/tiny.toast/toast.min.js"></script>
+    <link href="libs/xaringanExtra-broadcast/broadcast.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-broadcast/broadcast.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy<\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+&lt;!-- https://evamaerey.github.io/flipbooks/flipbook_recipes#49 --&gt;
+
+
+
+
+
+
+
+
+
+class: title-slide, center, bottom
+
+# Introduction to ggplot2
+
+### *The 100 Days of Data.trek Challenge*
+
+![](https://ivado.ca/wp-content/themes/ivadooo/assets/svg/siteLogo.svg)
+
+January 26, 2022 (updated: 2021-11-24)
+
+## Philippe Massicotte
+
+---
+
+&lt;br&gt;
+
+&lt;center&gt;&lt;img src="img/myname.png" alt="drawing" width="400"/&gt;&lt;/center&gt;
+
+&lt;p align="left"&gt;
+
+&lt;b&gt;Research assistant at Takuvik (Laval University)&lt;/b&gt;&lt;br&gt;
+
+- Remote sensing, modelling, data science, data visualization&lt;br&gt;
+
+&lt;br&gt;
+
+<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:20px;width:19.38px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#3C3C3C;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> &lt;small&gt;https://github.com/PMassicotte&lt;/small&gt; &lt;br&gt;
+
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:20px;width:20px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#3C3C3C;overflow:visible;position:relative;"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg> &lt;small&gt;philippe.massicotte@takuvik.ulaval.ca&lt;/small&gt; &lt;br&gt;
+
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:20px;width:20px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#3C3C3C;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> &lt;small&gt;@philmassicotte&lt;/small&gt; &lt;br&gt;
+
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:20px;width:20px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#3C3C3C;overflow:visible;position:relative;"><path d="M172.2 226.8c-14.6-2.9-28.2 8.9-28.2 23.8V301c0 10.2 7.1 18.4 16.7 22 18.2 6.8 31.3 24.4 31.3 45 0 26.5-21.5 48-48 48s-48-21.5-48-48V120c0-13.3-10.7-24-24-24H24c-13.3 0-24 10.7-24 24v248c0 89.5 82.1 160.2 175 140.7 54.4-11.4 98.3-55.4 109.7-109.7 17.4-82.9-37-157.2-112.5-172.2zM209 0c-9.2-.5-17 6.8-17 16v31.6c0 8.5 6.6 15.5 15 15.9 129.4 7 233.4 112 240.9 241.5.5 8.4 7.5 15 15.9 15h32.1c9.2 0 16.5-7.8 16-17C503.4 139.8 372.2 8.6 209 0zm.3 96c-9.3-.7-17.3 6.7-17.3 16.1v32.1c0 8.4 6.5 15.3 14.8 15.9 76.8 6.3 138 68.2 144.9 145.2.8 8.3 7.6 14.7 15.9 14.7h32.2c9.3 0 16.8-8 16.1-17.3-8.4-110.1-96.5-198.2-206.6-206.7z"/></svg> &lt;small&gt;www.pmassicotte.com&lt;/small&gt;
+
+&lt;/p&gt;
+
+---
+
+# Outline
+
+- What is data visualization?
+
+- `ggplot2` basic plots
+    - Histograms and bar plots
+    - Points and lines plots
+    - Boxplots
+
+- `ggplot2` aesthetics and appearance
+    - Color, size
+    - Axes and titles
+    - Faceting (small multiples)
+    - Overview of the `theme()` function
+
+- Combining plots with `patchwork`
+
+- Exporting `ggplot2` graphics
+
+---
+
+# Data visualization
+
+&lt;center&gt;
+&lt;figure&gt;
+  &lt;img src="https://blog.rstudio.com/2019/11/18/artist-in-residence/horst-eco-r4ds.png" width="800"&gt;
+&lt;figcaption&gt;Artwork by &lt;a href="https://twitter.com/allison_horst?s=20"&gt;@allison_horst&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/center&gt;
+
+---
+
+# Data visualization
+
+--
+
+- Important aspect of data sciences
+    - **Communicate information clearly and efficiently to the community.**
+
+--
+
+- Powerful tool to discovers patterns in the data.
+    - It makes complex data more accessible: **reveal the data**.
+
+--
+
+- Bad graphics can be a reason for paper rejection.
+    - **Readers should rapidly understand the message you are trying to convey.**
+
+--
+
+- A picture is worth a thousand words.
+    - **Always, always, always plot your data!**
+    - When possible, replace tables with more compelling figures.
+
+---
+
+# Visualization to convey your message
+
+It is difficult to grasp the information contained in a table.
+
+.pull-left[
+&lt;table class="table" style="font-size: 18px; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption style="font-size: initial !important;"&gt;Sea ice extent in the Arctic between 1978 and 2021.&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; date &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; extent &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 3in; "&gt; 1978-10-26 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 3in; "&gt; 10.231 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 3in; "&gt; 1978-10-28 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 3in; "&gt; 10.420 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 3in; "&gt; 1978-10-30 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 3in; "&gt; 10.557 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 3in; "&gt; 1978-11-01 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 3in; "&gt; 10.670 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 3in; "&gt; 1978-11-03 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 3in; "&gt; 10.777 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 3in; "&gt; 1978-11-05 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 3in; "&gt; 10.968 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 3in; "&gt; 1978-11-07 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 3in; "&gt; 11.080 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 3in; "&gt; 1978-11-09 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 3in; "&gt; 11.189 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 3in; "&gt; 1978-11-11 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 3in; "&gt; 11.314 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 3in; "&gt; 1978-11-13 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 3in; "&gt; 11.460 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+&lt;center&gt;
+    &lt;img src="img/arctic_seaice_extent.png" alt="Map showing the Arctic sea ice extent in October 2021." height="400"/&gt;
+&lt;/center&gt;
+]
+
+---
+
+# Visualization to convey your message
+
+Graphics, on the other hand, help to convey your message.
+
+&lt;img src="index_files/figure-html/unnamed-chunk-2-1.svg" width="70%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# Datasaurus Dozen
+
+--
+
+**These 13 datasets have the same statistical properties (*mean*, *variance*, *correlation*).** However, they look quite different.
+
+--
+
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Different types of visualizations
+
+There are many types of visualization to chose from to present data. The decision depends on the data itself and how you want to present it to your audience.
+
+&lt;center&gt;
+    &lt;img src="https://activewizards.com/content/blog/How_to_Choose_the_Right_Chart_Type_[Infographic]/chart-types-infographics04.png" alt="drawing" height="375"/&gt;
+    &lt;figcaption&gt;
+    &lt;a href="https://www.kdnuggets.com/2019/03/how-choose-right-chart-type.html"&gt;How to Choose the Right Chart Type&lt;/a&gt;
+    &lt;/figcaption&gt;
+&lt;/center&gt;
+
+---
+
+class: inverse, center, middle
+
+&lt;center&gt;
+&lt;figure&gt;
+  &lt;img src="https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/ggplot2_masterpiece.png?raw=true" width="700"&gt;
+&lt;figcaption&gt;Artwork by &lt;a href="https://twitter.com/allison_horst?s=20"&gt;@allison_horst&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/center&gt;
+
+---
+
+# ggplot2
+
+`ggplot2` is a system for declaratively creating graphics, based on [The Grammar of Graphics](https://amzn.to/2ef1eWp).
+
+.left-column[
+&lt;center&gt;
+&lt;figure&gt;
+  &lt;img src="https://raw.githubusercontent.com/tidyverse/ggplot2/master/man/figures/logo.png" width="300"&gt;
+&lt;/figure&gt;
+&lt;/center&gt;
+]
+
+.right-column[
+`ggplot2` is not part of base R, so it needs to be installed.
+
+
+```r
+install.packages("ggplot2")
+```
+
+After the installation, you will have to load it.
+
+
+```r
+library(ggplot2)
+```
+]
+
+---
+
+# ggplot2
+
+.column-left[
+- `ggplot2` is a very powerful tool. 
+
+- The learning curve can be difficult, but **the time investment will eventually pay off.**
+]
+
+.column-right[
+&lt;center&gt;
+&lt;figure&gt;
+  &lt;img src="https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/r_first_then.png?raw=true" height="500"&gt;
+    &lt;figcaption&gt;
+    Artwork by &lt;a href="https://twitter.com/allison_horst?s=20"&gt;@allison_horst&lt;/a&gt;
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/center&gt;
+]
+
+---
+
+# TidyTuesday
+
+TidyTuesday is a weekly challenge where people use (mostly) `ggplot2` to explore a new dataset.
+
+&gt; A weekly data project aimed at the R ecosystem. As this project was borne out of the R4DS Online Learning Community and the R for Data Science textbook, an emphasis was placed on understanding how to summarize and arrange data to make meaningful charts with `ggplot2`, `tidyr`, `dplyr`, and other tools in the `tidyverse` ecosystem.
+
+&lt;center&gt;
+    &lt;img src="https://github.com/rfordatascience/tidytuesday/blob/master/static/tt_logo.png?raw=true" alt="drawing" width="450"/&gt;
+    &lt;figcaption&gt;
+    &lt;a href="https://twitter.com/search?q=%23TidyTuesday&amp;src=hashtag_click"&gt;#TidyTuesday on &lt;i class="fab fa-twitter"&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;/figcaption&gt;
+&lt;/center&gt;
+
+---
+
+# TidyTuesday
+
+As already said, `ggplot2` can be intimidating at first. However, with some practice, you will be able to make stunning graphics.
+
+&lt;div class="row"&gt;
+    &lt;div class="column"&gt;
+        &lt;img src="https://christianburkhart.de/static/30599239f2edece767ae2434a6665c60/47218/tidytuesday_birds.png"
+            alt="Snow" style="width:80%"&gt;
+        &lt;figcaption&gt;
+            Graphic by &lt;a href=https://twitter.com/ChBurkhart"&gt;@ChBurkhart&lt;/a&gt;
+        &lt;/figcaption&gt;
+    &lt;/div&gt;
+    &lt;div class="column"&gt;
+        &lt;img src="https://github.com/jkaupp/tidytuesdays/blob/437b47ad14bd3d6d66dca41e0a4a84c9d96716fb/2020/week44/tw44_plot.png?raw=true"
+            alt="Forest" style="width:80%"&gt;
+        &lt;figcaption&gt;
+            Graphic by &lt;a href=https://twitter.com/jakekaupp"&gt;@jakekaupp&lt;/a&gt;
+        &lt;/figcaption&gt;
+    &lt;/div&gt;
+    &lt;div class="column"&gt;
+        &lt;img src="https://github.com/gkaramanis/aRtist/blob/main/genuary/2021/2021-3/2021-3.png?raw=true" alt="Forest"
+            style="width:80%"&gt;
+        &lt;figcaption&gt;
+            Graphic by &lt;a href=https://twitter.com/geokaramanis?lang=en"&gt;@geokaramanis&lt;/a&gt;
+        &lt;/figcaption&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+**Most people participating in the TidyTuesday challenges share their code on Github. It is a great way to learn more advanced techniques!**
+
+---
+
+class: inverse, center, middle
+
+# Let's start with ggplot2!
+
+---
+
+# The Palmer Penguins
+
+Data were collected and made available by [Dr. Kristen Gorman](https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php) and the [Palmer Station, Antarctica LTER](https://pal.lternet.edu/), a member of the [Long Term Ecological Research Network](https://lternet.edu/). 
+
+&lt;center&gt;
+&lt;figure&gt;
+  &lt;img src="https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/man/figures/lter_penguins.png" width="600"&gt;
+&lt;/figure&gt;
+&lt;figcaption&gt;
+    Artwork by &lt;a href="https://twitter.com/allison_horst?s=20"&gt;@allison_horst&lt;/a&gt;
+&lt;/figcaption&gt;
+&lt;/center&gt;
+
+---
+
+# The Palmer Penguins
+
+The dataset contain data for 344 penguins from 3 different species (&lt;pu&gt;&lt;b&gt;Chinstrap&lt;/b&gt;&lt;/pu&gt;, &lt;cy&gt;&lt;b&gt;Gentoo&lt;/b&gt;&lt;/cy&gt; and &lt;or&gt;&lt;b&gt;Adélie&lt;/b&gt;&lt;/or&gt;) collected from 3 islands in the Palmer Archipelago, Antarctica.
+
+&lt;small&gt;
+.pull-left[
+
+- `species`: penguin species (Adélie, Chinstrap and Gentoo)
+
+- `island`: island in Palmer Archipelago, Antarctica (Biscoe, Dream or Torgersen)
+
+- `bill_length_mm`: bill length (millimeters)
+
+- `bill_depth_mm`: bill depth (millimeters)
+
+- `flipper_length_mm`: flipper length (millimeters)
+
+- `body_mass_g`: body mass (grams)
+
+- `sex`: penguin sex (female, male)
+
+- `year`: year of the study (2007, 2008 or 2009)
+
+]
+&lt;/small&gt;
+
+.pull-right[
+&lt;center&gt;
+&lt;figure&gt;
+  &lt;img src="https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/man/figures/culmen_depth.png" width="700"&gt;
+&lt;/figure&gt;
+&lt;/center&gt;
+]
+
+---
+
+# Installing the data
+
+.left-column[
+&lt;center&gt;
+&lt;figure&gt;
+  &lt;img src="https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/man/figures/logo.png" width="300"&gt;
+&lt;/figure&gt;
+&lt;/center&gt;
+]
+
+.right-column[
+You can install the data as follow:
+
+
+```r
+# install.packages("remotes")
+remotes::install_github("allisonhorst/palmerpenguins")
+```
+]
+
+---
+
+# Exploring the penguins data
+
+&lt;small&gt;
+
+```r
+library(palmerpenguins)
+penguins
+```
+
+```
+## # A tibble: 344 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750 male    2007
+##  2 Adelie  Torgersen           39.5          17.4               186        3800 female  2007
+##  3 Adelie  Torgersen           40.3          18                 195        3250 female  2007
+##  4 Adelie  Torgersen           NA            NA                  NA          NA &lt;NA&gt;    2007
+##  5 Adelie  Torgersen           36.7          19.3               193        3450 female  2007
+##  6 Adelie  Torgersen           39.3          20.6               190        3650 male    2007
+##  7 Adelie  Torgersen           38.9          17.8               181        3625 female  2007
+##  8 Adelie  Torgersen           39.2          19.6               195        4675 male    2007
+##  9 Adelie  Torgersen           34.1          18.1               193        3475 &lt;NA&gt;    2007
+## 10 Adelie  Torgersen           42            20.2               190        4250 &lt;NA&gt;    2007
+## # … with 334 more rows
+```
+&lt;/small&gt;
+
+---
+
+# Understanding the ggplot2 syntax
+
+A `ggplot2` plot is built layer by layer by using the `+` operator. 
+
+&lt;center&gt;
+    &lt;img src="img/ggplot2_structure.png" alt="drawing" width="800"/&gt;
+&lt;/center&gt;
+&lt;figcaption&gt;
+    The basic structure of a ggplot2 plot.
+&lt;/figcaption&gt;
+        
+---
+
+# The geoms 
+
+`geoms` is the abbreviation for *geometric objects* which are used to specify which type of graphic you want to produce (boxplot, barplot, scatter, ...). All `ggplot2` geoms start with the `geom_` prefix.
+
+&lt;small&gt;
+
+```
+##  [1] "geom_abline"            "geom_area"              "geom_bar"              
+##  [4] "geom_bin_2d"            "geom_bin2d"             "geom_blank"            
+##  [7] "geom_boxplot"           "geom_col"               "geom_contour"          
+## [10] "geom_contour_filled"    "geom_count"             "geom_crossbar"         
+## [13] "geom_curve"             "geom_density"           "geom_density_2d"       
+## [16] "geom_density_2d_filled" "geom_density2d"         "geom_density2d_filled" 
+## [19] "geom_dotplot"           "geom_errorbar"          "geom_errorbarh"        
+## [22] "geom_freqpoly"          "geom_function"          "geom_hex"              
+## [25] "geom_histogram"         "geom_hline"             "geom_jitter"           
+## [28] "geom_label"             "geom_line"              "geom_linerange"        
+## [31] "geom_map"               "geom_path"              "geom_point"            
+## [34] "geom_pointrange"        "geom_polygon"           "geom_qq"               
+## [37] "geom_qq_line"           "geom_quantile"          "geom_raster"           
+## [40] "geom_rect"              "geom_ribbon"            "geom_rug"              
+## [43] "geom_segment"           "geom_sf"                "geom_sf_label"         
+## [46] "geom_sf_text"           "geom_smooth"            "geom_spoke"            
+## [49] "geom_step"              "geom_text"              "geom_tile"             
+## [52] "geom_violin"            "geom_vline"
+```
+&lt;/small&gt;
+
+---
+
+class: inverse, center, middle
+
+# One variable graphics
+
+---
+
+# One variable graphics
+
+In this section, we are going to see the two main types of one variable graphics:
+
+| **Graphic type** | **Geom**           | **Description**                          |
+| ---------------- | ------------------ | ---------------------------------------- |
+| Histogram        | `geom_histogram()` | Produces histograms for continuous data. |
+| Barplot          | `geom_bar()`       | Produces histograms for discrete data.   |
+
+
+
+
+---
+
+count: false
+ 
+# Histogram
+.panel1-histogram1-auto[
+
+```r
+*ggplot(
+* data = penguins,
+* mapping = aes(x = body_mass_g)
+*) 
+```
+]
+ 
+.panel2-histogram1-auto[
+&lt;img src="index_files/figure-html/histogram1_auto_01_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Histogram
+.panel1-histogram1-auto[
+
+```r
+ggplot(
+  data = penguins,
+  mapping = aes(x = body_mass_g)
+) +
+* geom_histogram()
+```
+]
+ 
+.panel2-histogram1-auto[
+&lt;img src="index_files/figure-html/histogram1_auto_02_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;style&gt;
+.panel1-histogram1-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-histogram1-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-histogram1-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+---
+
+
+
+count: false
+ 
+# Barplot
+.panel1-barplot1-auto[
+
+```r
+*ggplot(
+* data = penguins,
+* mapping = aes(x = island)
+*) 
+```
+]
+ 
+.panel2-barplot1-auto[
+&lt;img src="index_files/figure-html/barplot1_auto_01_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Barplot
+.panel1-barplot1-auto[
+
+```r
+ggplot(
+  data = penguins,
+  mapping = aes(x = island)
+) +
+* geom_bar()
+```
+]
+ 
+.panel2-barplot1-auto[
+&lt;img src="index_files/figure-html/barplot1_auto_02_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;style&gt;
+.panel1-barplot1-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-barplot1-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-barplot1-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+---
+
+class: inverse, center, middle
+
+# Two variables graphics
+
+---
+
+# Two variables graphics
+
+There are several types of charts with two variables. Here are the most used.
+
+| **Graphic type** | **Geom**         | **Description**                                               |
+| ---------------- | ---------------- | ------------------------------------------------------------- |
+| Barplot          | `geom_col()`     | Produces bars with heights that represent values in the data. |
+| Scatter plot     | `geom_point()`   | Produces scatter plot between `x` and `y`.                    |
+| Line plot        | `geom_line()`    | Produces line plot between `x` and `y`.                       |
+| Boxplot          | `geom_boxplot()` | Boxplot between `x` and `y`.                                  |
+
+---
+
+# Barplot
+
+We used `geom_bar()` to visualize the number/count of cases for each value of `x`. If we want to represent values in the data (`y`), we can use `geom_col()`. For this example, I will use the `starwars` data that is included in the `dplyr` package. **This graph shows the top 20 tallest characters (in cm).**
+
+
+
+.pull-left[
+
+```r
+ggplot(
+  data = sw,
+  mapping = aes(
+*   x = name,
+*   y = height
+  )
+) +
+  geom_col()
+```
+]
+
+.pull-right[
+&lt;img src="index_files/figure-html/unnamed-chunk-10-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+**What is wrong with this graph?**
+
+---
+
+# Barplot
+
+In the previous graph, it was difficult to read the names on the `x` axis. **A better way to present the data is by swapping the `x` and `y` axes.**
+
+--
+
+.pull-left[
+
+```r
+ggplot(
+  data = sw,
+  mapping = aes(
+*   x = height,
+*   y = name
+  )
+) +
+  geom_col()
+```
+]
+
+.pull-right[
+&lt;img src="index_files/figure-html/unnamed-chunk-11-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Ordering things
+
+We have made some improvements in the previous graph by swapping the axes. However, **it would be even better if the characters were sorted by their height** to make the plot easier to understand. 
+
+--
+
+One way to do it is with `forcats::fct_reorder()`. Note that the `forcats` library is not part of base R and must be installed separately.
+
+--
+
+.pull-left[
+&lt;small&gt;
+
+```r
+ggplot(
+  data = sw,
+  mapping = aes(
+    x = height,
+*   y = forcats::fct_reorder(name, height)
+  )
+) +
+  geom_col()
+```
+&lt;/small&gt;
+]
+
+--
+
+.pull-right[
+&lt;img src="index_files/figure-html/unnamed-chunk-12-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+
+
+count: false
+ 
+# Scatter plot
+.panel1-scatterplot1-auto[
+
+```r
+*ggplot(
+* penguins,
+* aes(
+*   x = bill_length_mm,
+*   y = body_mass_g
+* )
+*) 
+```
+]
+ 
+.panel2-scatterplot1-auto[
+&lt;img src="index_files/figure-html/scatterplot1_auto_01_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Scatter plot
+.panel1-scatterplot1-auto[
+
+```r
+ggplot(
+  penguins,
+  aes(
+    x = bill_length_mm,
+    y = body_mass_g
+  )
+) +
+* geom_point()
+```
+]
+ 
+.panel2-scatterplot1-auto[
+&lt;img src="index_files/figure-html/scatterplot1_auto_02_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;style&gt;
+.panel1-scatterplot1-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-scatterplot1-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-scatterplot1-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+---
+
+
+
+count: false
+ 
+# Line plot
+.panel1-lineplot1-auto[
+
+```r
+*ggplot(
+* penguins,
+* aes(
+*   x = bill_length_mm,
+*   y = body_mass_g
+* )
+*) 
+```
+]
+ 
+.panel2-lineplot1-auto[
+&lt;img src="index_files/figure-html/lineplot1_auto_01_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Line plot
+.panel1-lineplot1-auto[
+
+```r
+ggplot(
+  penguins,
+  aes(
+    x = bill_length_mm,
+    y = body_mass_g
+  )
+) +
+* geom_line()
+```
+]
+ 
+.panel2-lineplot1-auto[
+&lt;img src="index_files/figure-html/lineplot1_auto_02_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;style&gt;
+.panel1-lineplot1-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-lineplot1-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-lineplot1-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+---
+
+# Boxplot
+
+&gt; In descriptive statistics, a box plot or boxplot is a convenient way of graphically depicting groups of numerical data through their quartiles (Wikipedia).
+
+To make a boxplot, we need to have a **discrete/categorical** variable on `x` and a **continuous** variable on `y`.
+
+---
+
+
+
+count: false
+ 
+# Boxplot
+.panel1-boxplot1-auto[
+
+```r
+*ggplot(
+* data = penguins,
+* mapping = aes(
+*   x = island,
+*   y = body_mass_g
+* )
+*) 
+```
+]
+ 
+.panel2-boxplot1-auto[
+&lt;img src="index_files/figure-html/boxplot1_auto_01_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Boxplot
+.panel1-boxplot1-auto[
+
+```r
+ggplot(
+  data = penguins,
+  mapping = aes(
+    x = island,
+    y = body_mass_g
+  )
+) +
+* geom_boxplot()
+```
+]
+ 
+.panel2-boxplot1-auto[
+&lt;img src="index_files/figure-html/boxplot1_auto_02_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;style&gt;
+.panel1-boxplot1-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-boxplot1-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-boxplot1-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+---
+
+# Boxplot
+
+We can reorder the `island` variable based on the `body_mass_g` variable to make the graphic more appealing with `forcats::fct_reorder()`.
+
+--
+
+.pull-left[
+&lt;small&gt;
+
+```r
+ggplot(
+  data = penguins,
+  mapping = aes(
+*   x = forcats::fct_reorder(
+*     island,
+*     body_mass_g,
+*     na.rm = TRUE
+*   ),
+    y = body_mass_g 
+  )
+) +
+  geom_boxplot()
+```
+&lt;/small&gt;
+]
+
+--
+
+.pull-right[
+&lt;img src="index_files/figure-html/unnamed-chunk-13-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+It is also possible to make spatial map with `ggplot2`.
+
+&lt;center&gt;
+    &lt;img src="https://github.com/PMassicotte/makeovermonday/blob/master/graphs/makeovermonday_2019w50.png?raw=true" alt="drawing" width="700"/&gt;
+&lt;/center&gt;
+
+---
+
+class: inverse, center, middle
+
+# Geom aesthetics
+
+---
+
+# Geom aesthetics
+
+Aesthetics such as *color*, *shape*, *size* of the displayed geoms can be controlled inside the `geom_()` functions. For example, we can change the `color` and the `size` of the point in the `geom_point()` function.
+
+
+```r
+geom_point(color = "red", size = 5) # All points will be red
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-15-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Working with colors
+
+If we want to set a color **based on a variable**, we have to use the aesthetic: `aes(colour = variable)`.
+
+
+```r
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g)) +
+* geom_point(aes(color = species))
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-16-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+
+count: false
+ 
+# Setting colors manually 
+ We can also create our own palette of colors using *scale_color_manual()*.
+.panel1-manual_colors1-auto[
+
+```r
+*ggplot(
+* penguins,
+* aes(
+*   x = bill_length_mm,
+*   y = body_mass_g
+* )
+*) 
+```
+]
+ 
+.panel2-manual_colors1-auto[
+&lt;img src="index_files/figure-html/manual_colors1_auto_01_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Setting colors manually 
+ We can also create our own palette of colors using *scale_color_manual()*.
+.panel1-manual_colors1-auto[
+
+```r
+ggplot(
+  penguins,
+  aes(
+    x = bill_length_mm,
+    y = body_mass_g
+  )
+) +
+* geom_point(aes(color = species))
+```
+]
+ 
+.panel2-manual_colors1-auto[
+&lt;img src="index_files/figure-html/manual_colors1_auto_02_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Setting colors manually 
+ We can also create our own palette of colors using *scale_color_manual()*.
+.panel1-manual_colors1-auto[
+
+```r
+ggplot(
+  penguins,
+  aes(
+    x = bill_length_mm,
+    y = body_mass_g
+  )
+) +
+  geom_point(aes(color = species)) +
+* scale_color_manual(
+*   breaks = c(
+*     "Adelie",
+*     "Chinstrap",
+*     "Gentoo"
+*   ),
+*   values = c(
+*     "darkorange",
+*     "purple",
+*     "#008b8b"
+*   )
+* )
+```
+]
+ 
+.panel2-manual_colors1-auto[
+&lt;img src="index_files/figure-html/manual_colors1_auto_03_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;style&gt;
+.panel1-manual_colors1-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-manual_colors1-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-manual_colors1-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+---
+
+background-image: url(https://github.com/EmilHvitfeldt/paletteer/blob/master/man/figures/logo.png?raw=true)
+background-size: 90px
+background-position: 90% 8%
+
+# Color palettes for ggplot2
+
+There are many different R packages that provide color palettes.
+
+`paletteer` is a comprehensive collection of color palettes in R created by [@Emil_Hvitfeldt](https://twitter.com/Emil_Hvitfeldt). I have made a [paletteer gallery](https://github.com/PMassicotte/paletteer_gallery) to help me navigate all the palettes.
+
+.pull-left[
+
+&lt;small&gt;
+
+```r
+*library(paletteer)
+
+ggplot(
+  data = sw,
+  mapping = aes(
+    x = height,
+    y = forcats::fct_reorder(name, height),
+*   fill = height
+  )
+) +
+  geom_col() +
+* scale_fill_paletteer_c("ggthemes::Red-Gold")
+```
+&lt;/small&gt;
+]
+
+.pull-right[
+&lt;img src="index_files/figure-html/unnamed-chunk-17-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Types of color scales
+
+**Attention to the type of color scale that is mapped to your data.**
+
+--
+
+- Use `scale_color_*()` of `scale_colour_*()` for the **color** of the geom.
+
+--
+
+- Use `scale_fill_*()` for the **fill color** of the geom.
+
+--
+
+.pull-left[
+
+&lt;br&gt;
+
+
+```r
+ggplot(
+  data = mpg,
+  mapping = aes(x = class)
+) +
+  geom_bar(
+    size = 1,
+*   aes(fill = fl, color = class)
+  )
+```
+]
+
+.pull-right[
+
+&lt;img src="index_files/figure-html/unnamed-chunk-18-1.svg" height="80%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Working with size
+
+As we did for the colors, the size of the geom (ex.: dots) can be based on a particular variable.
+
+
+```r
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g)) +
+* geom_point(aes(size = body_mass_g))
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-19-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Continuous vs discrete mapping
+
+**Pay attention to the type of data you are mapping to a color or shape scale.**
+
+If the mapped variable is **continuous**, the generated guide on the legend will be also **continuous**.
+
+
+```r
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g)) +
+* geom_point(aes(color = year))
+```
+
+&lt;img src="index_files/figure-html/continuous-mapping-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Continuous vs discrete mapping
+
+**Pay attention to the type of data you are mapping to a color or shape scale.**
+
+If the mapped variable is **discrete**, the generated guide on the legend will be also **discrete**. You can convert a continuous variable into a factor with the `factor()` function.
+
+
+
+```r
+ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g)) +
+* geom_point(aes(color = factor(year)))
+```
+
+&lt;img src="index_files/figure-html/discrete-mapping-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: inverse, center, middle
+
+# Axes and titles
+
+---
+
+# Axes and titles
+
+There are many ways to change the titles of the graphic and the axes. Here we are going to use the `labs()` function. 
+
+These are the main parameters:
+
+- `title`: Main title of the graph
+
+- `x`, `y`: Titles for the axes
+
+- `subtitle`: Subtitle title of the graph (default: under the main title)
+
+- `caption`: Caption of the graph (default: bottom right of the graph)
+
+---
+
+
+
+count: false
+ 
+# Axes and titles
+.panel1-axes_and_titles1-auto[
+
+```r
+*ggplot(
+* data = penguins,
+* aes(
+*   x = flipper_length_mm,
+*   y = bill_length_mm,
+*   color = species
+* )
+*) 
+```
+]
+ 
+.panel2-axes_and_titles1-auto[
+&lt;img src="index_files/figure-html/axes_and_titles1_auto_01_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Axes and titles
+.panel1-axes_and_titles1-auto[
+
+```r
+ggplot(
+  data = penguins,
+  aes(
+    x = flipper_length_mm,
+    y = bill_length_mm,
+    color = species
+  )
+) +
+* geom_point()
+```
+]
+ 
+.panel2-axes_and_titles1-auto[
+&lt;img src="index_files/figure-html/axes_and_titles1_auto_02_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Axes and titles
+.panel1-axes_and_titles1-auto[
+
+```r
+ggplot(
+  data = penguins,
+  aes(
+    x = flipper_length_mm,
+    y = bill_length_mm,
+    color = species
+  )
+) +
+  geom_point() +
+* labs(
+*   title = "Flipper and bill length",
+*   subtitle = "Relationship between flipper and bill length",
+*   caption = "Data from: palmerpenguins R package",
+*   x = "Flipper length (mm)",
+*   y = "Bill length (mm)",
+*   color = "Penguin\nspecies"
+* )
+```
+]
+ 
+.panel2-axes_and_titles1-auto[
+&lt;img src="index_files/figure-html/axes_and_titles1_auto_03_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;style&gt;
+.panel1-axes_and_titles1-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-axes_and_titles1-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-axes_and_titles1-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+---
+
+
+
+count: false
+ 
+# Controling axis labels
+.panel1-axes_and_titles2-auto[
+
+```r
+*ggplot(
+* data = penguins,
+* aes(
+*   x = flipper_length_mm,
+*   y = bill_length_mm,
+*   color = species
+* )
+*) 
+```
+]
+ 
+.panel2-axes_and_titles2-auto[
+&lt;img src="index_files/figure-html/axes_and_titles2_auto_01_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Controling axis labels
+.panel1-axes_and_titles2-auto[
+
+```r
+ggplot(
+  data = penguins,
+  aes(
+    x = flipper_length_mm,
+    y = bill_length_mm,
+    color = species
+  )
+) +
+* geom_point()
+```
+]
+ 
+.panel2-axes_and_titles2-auto[
+&lt;img src="index_files/figure-html/axes_and_titles2_auto_02_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Controling axis labels
+.panel1-axes_and_titles2-auto[
+
+```r
+ggplot(
+  data = penguins,
+  aes(
+    x = flipper_length_mm,
+    y = bill_length_mm,
+    color = species
+  )
+) +
+  geom_point() +
+* scale_x_continuous(
+*   breaks = c(180, 220),
+*   labels = c("abc", "def")
+* )
+```
+]
+ 
+.panel2-axes_and_titles2-auto[
+&lt;img src="index_files/figure-html/axes_and_titles2_auto_03_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;style&gt;
+.panel1-axes_and_titles2-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-axes_and_titles2-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-axes_and_titles2-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+---
+
+class: inverse, center, middle
+
+# Faceting
+
+---
+
+# Faceting
+
+Faceting is a technique that allows displaying additional categorical variables in facets. Within `ggplot2`, there are two types of faceting: `facet_grid()` and `facet_wrap()`.
+
+&lt;img src="index_files/figure-html/unnamed-chunk-20-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+
+count: false
+ 
+# 1D faceting
+.panel1-facet1-auto[
+
+```r
+*ggplot(
+* data = drop_na(penguins, sex),
+* aes(
+*   x = body_mass_g,
+*   y = bill_depth_mm,
+*   color = sex
+* )
+*) 
+```
+]
+ 
+.panel2-facet1-auto[
+&lt;img src="index_files/figure-html/facet1_auto_01_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# 1D faceting
+.panel1-facet1-auto[
+
+```r
+ggplot(
+  data = drop_na(penguins, sex),
+  aes(
+    x = body_mass_g,
+    y = bill_depth_mm,
+    color = sex
+  )
+) +
+* geom_point()
+```
+]
+ 
+.panel2-facet1-auto[
+&lt;img src="index_files/figure-html/facet1_auto_02_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# 1D faceting
+.panel1-facet1-auto[
+
+```r
+ggplot(
+  data = drop_na(penguins, sex),
+  aes(
+    x = body_mass_g,
+    y = bill_depth_mm,
+    color = sex
+  )
+) +
+  geom_point() +
+* facet_wrap(~species)
+```
+]
+ 
+.panel2-facet1-auto[
+&lt;img src="index_files/figure-html/facet1_auto_03_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;style&gt;
+.panel1-facet1-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-facet1-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-facet1-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+---
+
+
+
+count: false
+ 
+# 1D faceting
+.panel1-facet2-auto[
+
+```r
+*ggplot(
+* data = drop_na(penguins, sex),
+* aes(
+*   x = body_mass_g,
+*   y = bill_depth_mm,
+*   color = sex
+* )
+*) 
+```
+]
+ 
+.panel2-facet2-auto[
+&lt;img src="index_files/figure-html/facet2_auto_01_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# 1D faceting
+.panel1-facet2-auto[
+
+```r
+ggplot(
+  data = drop_na(penguins, sex),
+  aes(
+    x = body_mass_g,
+    y = bill_depth_mm,
+    color = sex
+  )
+) +
+* geom_point()
+```
+]
+ 
+.panel2-facet2-auto[
+&lt;img src="index_files/figure-html/facet2_auto_02_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# 1D faceting
+.panel1-facet2-auto[
+
+```r
+ggplot(
+  data = drop_na(penguins, sex),
+  aes(
+    x = body_mass_g,
+    y = bill_depth_mm,
+    color = sex
+  )
+) +
+  geom_point() +
+* facet_wrap(~species, scales = "free_x")
+```
+]
+ 
+.panel2-facet2-auto[
+&lt;img src="index_files/figure-html/facet2_auto_03_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;style&gt;
+.panel1-facet2-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-facet2-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-facet2-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+---
+
+
+
+count: false
+ 
+# 2D faceting
+.panel1-facet3-auto[
+
+```r
+*ggplot(
+* data = drop_na(penguins, sex),
+* aes(
+*   x = body_mass_g,
+*   y = bill_depth_mm,
+*   color = sex
+* )
+*) 
+```
+]
+ 
+.panel2-facet3-auto[
+&lt;img src="index_files/figure-html/facet3_auto_01_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# 2D faceting
+.panel1-facet3-auto[
+
+```r
+ggplot(
+  data = drop_na(penguins, sex),
+  aes(
+    x = body_mass_g,
+    y = bill_depth_mm,
+    color = sex
+  )
+) +
+* geom_point()
+```
+]
+ 
+.panel2-facet3-auto[
+&lt;img src="index_files/figure-html/facet3_auto_02_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# 2D faceting
+.panel1-facet3-auto[
+
+```r
+ggplot(
+  data = drop_na(penguins, sex),
+  aes(
+    x = body_mass_g,
+    y = bill_depth_mm,
+    color = sex
+  )
+) +
+  geom_point() +
+* facet_grid(island ~ species)
+```
+]
+ 
+.panel2-facet3-auto[
+&lt;img src="index_files/figure-html/facet3_auto_03_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;style&gt;
+.panel1-facet3-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-facet3-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-facet3-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+---
+
+class: inverse, center, middle
+
+# Using ggplot2 themes
+
+---
+
+# ggplot2 themes
+
+&gt; Themes are a powerful way to customize the non-data components of your plots: i.e. titles, labels, fonts, background, gridlines, and legends.
+
+Many components can be changed using the `theme()` function. Today we are going to see just a few of them, but feel free to have a look at `?theme` to have more information.
+
+--
+
+`theme()` can be used to modify:
+
+--
+
+- The background aesthetics (color, grid, etc.).
+
+--
+
+- Axis titles and ticks aesthetics.
+
+--
+
+- Legend titles and positions.
+
+--
+
+- Aesthetics of plot titles (title, subtitle, caption, etc.).
+
+--
+
+- Plot margins.
+
+---
+
+
+
+
+
+
+count: false
+ 
+# Built in themes
+.panel1-theme1-auto[
+
+```r
+*p 
+```
+]
+ 
+.panel2-theme1-auto[
+&lt;img src="index_files/figure-html/theme1_auto_01_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Built in themes
+.panel1-theme1-auto[
+
+```r
+p +
+* theme_bw()
+```
+]
+ 
+.panel2-theme1-auto[
+&lt;img src="index_files/figure-html/theme1_auto_02_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Built in themes
+.panel1-theme1-auto[
+
+```r
+p +
+  theme_bw() +
+* theme_light()
+```
+]
+ 
+.panel2-theme1-auto[
+&lt;img src="index_files/figure-html/theme1_auto_03_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Built in themes
+.panel1-theme1-auto[
+
+```r
+p +
+  theme_bw() +
+  theme_light() +
+* theme_gray()
+```
+]
+ 
+.panel2-theme1-auto[
+&lt;img src="index_files/figure-html/theme1_auto_04_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Built in themes
+.panel1-theme1-auto[
+
+```r
+p +
+  theme_bw() +
+  theme_light() +
+  theme_gray() +
+* theme_dark()
+```
+]
+ 
+.panel2-theme1-auto[
+&lt;img src="index_files/figure-html/theme1_auto_05_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Built in themes
+.panel1-theme1-auto[
+
+```r
+p +
+  theme_bw() +
+  theme_light() +
+  theme_gray() +
+  theme_dark() +
+* theme_void()
+```
+]
+ 
+.panel2-theme1-auto[
+&lt;img src="index_files/figure-html/theme1_auto_06_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;style&gt;
+.panel1-theme1-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-theme1-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-theme1-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+---
+
+# External themes
+
+- You are not limited to use `ggplot2` built-in themes.
+
+- Here are some themes provided by the `ggthemes` and `ggpubr` packages.
+
+
+```r
+install.packages("ggthemes")
+install.packages("ggpubr")
+```
+
+---
+
+
+
+count: false
+ 
+# External themes
+.panel1-theme2-auto[
+
+```r
+*p 
+```
+]
+ 
+.panel2-theme2-auto[
+&lt;img src="index_files/figure-html/theme2_auto_01_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# External themes
+.panel1-theme2-auto[
+
+```r
+p +
+* ggthemes::theme_solarized()
+```
+]
+ 
+.panel2-theme2-auto[
+&lt;img src="index_files/figure-html/theme2_auto_02_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# External themes
+.panel1-theme2-auto[
+
+```r
+p +
+  ggthemes::theme_solarized() +
+* ggthemes::theme_fivethirtyeight()
+```
+]
+ 
+.panel2-theme2-auto[
+&lt;img src="index_files/figure-html/theme2_auto_03_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# External themes
+.panel1-theme2-auto[
+
+```r
+p +
+  ggthemes::theme_solarized() +
+  ggthemes::theme_fivethirtyeight() +
+* ggthemes::theme_calc()
+```
+]
+ 
+.panel2-theme2-auto[
+&lt;img src="index_files/figure-html/theme2_auto_04_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# External themes
+.panel1-theme2-auto[
+
+```r
+p +
+  ggthemes::theme_solarized() +
+  ggthemes::theme_fivethirtyeight() +
+  ggthemes::theme_calc() +
+* ggthemes::theme_excel()
+```
+]
+ 
+.panel2-theme2-auto[
+&lt;img src="index_files/figure-html/theme2_auto_05_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# External themes
+.panel1-theme2-auto[
+
+```r
+p +
+  ggthemes::theme_solarized() +
+  ggthemes::theme_fivethirtyeight() +
+  ggthemes::theme_calc() +
+  ggthemes::theme_excel() +
+* ggpubr::theme_pubr()
+```
+]
+ 
+.panel2-theme2-auto[
+&lt;img src="index_files/figure-html/theme2_auto_06_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# External themes
+.panel1-theme2-auto[
+
+```r
+p +
+  ggthemes::theme_solarized() +
+  ggthemes::theme_fivethirtyeight() +
+  ggthemes::theme_calc() +
+  ggthemes::theme_excel() +
+  ggpubr::theme_pubr() +
+* ggpubr::theme_cleveland()
+```
+]
+ 
+.panel2-theme2-auto[
+&lt;img src="index_files/figure-html/theme2_auto_07_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# External themes
+.panel1-theme2-auto[
+
+```r
+p +
+  ggthemes::theme_solarized() +
+  ggthemes::theme_fivethirtyeight() +
+  ggthemes::theme_calc() +
+  ggthemes::theme_excel() +
+  ggpubr::theme_pubr() +
+  ggpubr::theme_cleveland() +
+* ggpubr::theme_pubclean()
+```
+]
+ 
+.panel2-theme2-auto[
+&lt;img src="index_files/figure-html/theme2_auto_08_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;style&gt;
+.panel1-theme2-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-theme2-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-theme2-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+---
+
+
+
+count: false
+ 
+# Legend position
+.panel1-legend_position-auto[
+
+```r
+*p 
+```
+]
+ 
+.panel2-legend_position-auto[
+&lt;img src="index_files/figure-html/legend_position_auto_01_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Legend position
+.panel1-legend_position-auto[
+
+```r
+p +
+* theme(legend.position = "top")
+```
+]
+ 
+.panel2-legend_position-auto[
+&lt;img src="index_files/figure-html/legend_position_auto_02_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Legend position
+.panel1-legend_position-auto[
+
+```r
+p +
+  theme(legend.position = "top") +
+* theme(legend.position = "left")
+```
+]
+ 
+.panel2-legend_position-auto[
+&lt;img src="index_files/figure-html/legend_position_auto_03_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Legend position
+.panel1-legend_position-auto[
+
+```r
+p +
+  theme(legend.position = "top") +
+  theme(legend.position = "left") +
+* theme(legend.position = "bottom")
+```
+]
+ 
+.panel2-legend_position-auto[
+&lt;img src="index_files/figure-html/legend_position_auto_04_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;style&gt;
+.panel1-legend_position-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-legend_position-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-legend_position-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+---
+
+# ggplot2 themes
+
+- There are many components that can be modified with the `theme()` function. 
+
+- Most of these components are modified using the `element_*()` functions.
+
+--
+
+  - `element_rect()`: for borders and backgrounds
+
+--
+
+  - `element_line()`: for lines elements
+
+--
+
+  - `element_text()`: for text
+
+---
+
+
+
+count: false
+ 
+# Grid
+.panel1-grid-auto[
+
+```r
+*p 
+```
+]
+ 
+.panel2-grid-auto[
+&lt;img src="index_files/figure-html/grid_auto_01_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Grid
+.panel1-grid-auto[
+
+```r
+p +
+* theme(
+*   panel.grid = element_line(
+*     size = 3,
+*     color = "red"
+*   )
+* )
+```
+]
+ 
+.panel2-grid-auto[
+&lt;img src="index_files/figure-html/grid_auto_02_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;style&gt;
+.panel1-grid-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-grid-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-grid-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+---
+
+
+
+count: false
+ 
+# Axes ticks
+.panel1-ticks-auto[
+
+```r
+*p 
+```
+]
+ 
+.panel2-ticks-auto[
+&lt;img src="index_files/figure-html/ticks_auto_01_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+count: false
+ 
+# Axes ticks
+.panel1-ticks-auto[
+
+```r
+p +
+* theme(
+*   axis.ticks = element_line(
+*     size = 2,
+*     color = "blue"
+*   ),
+*   axis.ticks.length = unit(1, "cm")
+* )
+```
+]
+ 
+.panel2-ticks-auto[
+&lt;img src="index_files/figure-html/ticks_auto_02_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;style&gt;
+.panel1-ticks-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-ticks-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-ticks-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+---
+
+class: inverse, center, middle
+
+&lt;center&gt;
+&lt;figure&gt;
+  &lt;img src="https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/patchwork_1.jpg?raw=true" width="700"&gt;
+&lt;figcaption&gt;
+    Artwork by &lt;a href="https://twitter.com/allison_horst?s=20"&gt;@allison_horst&lt;/a&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/center&gt;
+
+---
+
+# Combining plots
+
+There are many R packages that can be used to combine plots.  Here we are going to have a quick overview of the `patchwork` package. The package is not part of base R so it needs to be installed and loaded before you can use it.
+
+.pull-left[
+&lt;center&gt;
+&lt;figure&gt;
+  &lt;img src="https://github.com/thomasp85/patchwork/blob/master/man/figures/logo.png?raw=true" width="200"&gt;
+  &lt;figcaption&gt;
+    &lt;a href="https://github.com/thomasp85/patchwork"&gt;The patchwork package&lt;/a&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/center&gt;
+]
+
+.pull-right[
+
+```r
+install.packages("patchwork")
+
+library(patchwork)
+```
+]
+
+---
+
+# Plots 1
+
+&lt;img src="index_files/figure-html/unnamed-chunk-23-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Plot 2
+
+&lt;img src="index_files/figure-html/unnamed-chunk-24-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Combining horizontally
+
+Combining horizontally is done using the `+` operator.
+
+
+```r
+p1 + p2
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-25-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Combining vertically
+
+Combining vertically is done using the `/` operator.
+
+
+```r
+p1 / p2
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-26-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# More complex arrangement
+
+
+```r
+(p1 + p2) / p1
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-27-1.svg" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Adding labels
+
+.pull-left[
+It is often interesting to add a title and necessary to identify each panel (graph) with a letter. This can be achieved with the `plot_annotation()`.
+
+
+```r
+p1 / p2 +
+  plot_annotation(
+*   tag_levels = "A",
+*   title = "The Palmer penguins"
+  )
+```
+]
+
+.pull-right[
+&lt;img src="index_files/figure-html/plot-annotation2-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+class: inverse, center, middle
+
+# Saving your graphics
+
+&lt;br&gt;
+
+.pull-left[<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:200px;width:150px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#9EADBD;overflow:visible;position:relative;"><path d="M384 121.941V128H256V0h6.059a24 24 0 0 1 16.97 7.029l97.941 97.941a24.002 24.002 0 0 1 7.03 16.971zM248 160c-13.2 0-24-10.8-24-24V0H24C10.745 0 0 10.745 0 24v464c0 13.255 10.745 24 24 24h336c13.255 0 24-10.745 24-24V160H248zm-135.455 16c26.51 0 48 21.49 48 48s-21.49 48-48 48-48-21.49-48-48 21.491-48 48-48zm208 240h-256l.485-48.485L104.545 328c4.686-4.686 11.799-4.201 16.485.485L160.545 368 264.06 264.485c4.686-4.686 12.284-4.686 16.971 0L320.545 304v112z"/></svg>]
+.pull-right[<svg aria-hidden="true" role="img" viewBox="0 0 384 512" style="height:200px;width:150px;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:#C39AAC;overflow:visible;position:relative;"><path d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"/></svg>]
+
+
+---
+
+# Vector vs raster graphics
+
+.pull-left[
+&gt; The main difference between vector and raster graphics is that raster graphics are composed of pixels, while vector graphics are composed of paths.
+.left[
+&lt;credit&gt;
+    Source: &lt;a href="https://www.geeksforgeeks.org/vector-vs-raster-graphics/"&gt;Vector vs Raster Graphics&lt;/a&gt;
+&lt;/credit&gt;
+]
+
+- Scientific journals often require at least 300 DPI raster or vector graphics.
+
+- **Attention: vector graphics can produce very large files for certain types of graphics (ex.: 3D plots).**
+
+]
+
+.pull-right[
+&lt;center&gt;
+&lt;figure&gt;
+  &lt;img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/VectorBitmapExample.svg" height="400"&gt;
+  &lt;figcaption&gt;
+    Source: Wikipedia 
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/center&gt;
+]
+
+---
+
+# Saving your graphics
+
+Saving `ggplot2` graphics is done with the `ggsave()` function.
+
+
+```r
+p &lt;- ggplot(mpg, aes(x = displ, y = cty)) +
+  geom_point()
+```
+
+**Vector formats**
+
+
+```r
+ggsave("path/to/myfile.pdf", p, width = 5.97, height = 4.79)
+ggsave("path/to/myfile.eps", p, width = 5.97, height = 4.79)
+ggsave("path/to/myfile.ps", p, width = 5.97, height = 4.79)
+```
+
+**Raster formats**
+
+
+```r
+ggsave("path/to/myfile.jpg", p, width = 5.97, height = 4.79, dpi = 300)
+ggsave("path/to/myfile.tiff", p, width = 5.97, height = 4.79, dpi = 300)
+ggsave("path/to/myfile.png", p, width = 5.97, height = 4.79, dpi = 300)
+```
+
+---
+
+# General guidelines
+
+Avoid unnecessary background and heavy gridlines.
+
+&lt;img src="index_files/figure-html/unnamed-chunk-31-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Useful references
+
+&lt;center&gt;
+&lt;figure&gt;
+  &lt;img src="img/better_data_visualization.png" width="200"&gt;
+  &lt;figcaption&gt;
+    TODO use magik for a collage?
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+---
+
+# A final note...
+
+There is a lot to learn about `ggplot2` and data visualization, but I hope you have learned something today.
+
+--
+
+If it is not the case...
+
+--
+
+&lt;div class="row"&gt;
+    &lt;div class="column"&gt;
+        &lt;img src="https://media.giphy.com/media/62cTOas6rcoRQsxwSy/giphy.gif" alt="Snow" style="width:80%"&gt;
+    &lt;/div&gt;
+    &lt;div class="column"&gt;
+        &lt;img src="https://media.giphy.com/media/3Gl8sOjurR3ihZj27S/giphy.gif" alt="Forest" style="width:80%"&gt;
+    &lt;/div&gt;
+    &lt;div class="column"&gt;
+        &lt;img src="https://media.giphy.com/media/ekvSclOoygt90LW8Ro/giphy.gif" alt="Forest" style="width:80%"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"highlightSpans": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

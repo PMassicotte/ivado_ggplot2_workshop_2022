@@ -1,0 +1,235 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300;400&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Paytone+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kreon:wght@300&display=swap");
+
+.remark-inline-code {
+  font-size: 90%;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 600;
+  color: #231f20;
+  background: #dee2e6;
+  border-radius: 3px;
+  padding: 1px 1px 1px 1px;
+}
+
+.remark-code {
+  font-size: 90%;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 400;
+  color: #231f20;
+  background: #e8edee;
+  border-radius: 3px;
+  padding: 1px 1px 1px 1px;
+}
+
+/*-- Line highlighting within code --*/
+.remark-code-line-highlighted {
+  background-color: #fdfda3;
+}
+
+.inverse {
+  text-shadow: 0 0 0px #333;
+}
+
+figcaption {
+  font-size: 14px;
+  color: #808080;
+  font-family: "PT Sans Caption", sans-serif;
+  text-align: center;
+}
+
+credit {
+  font-size: 14px;
+  color: #808080;
+  font-family: "PT Sans Caption", sans-serif;
+  text-align: right;
+}
+
+.caption {
+  font-size: 14px;
+  color: #808080;
+  font-family: "PT Sans Caption", sans-serif;
+  text-align: center;
+}
+
+body {
+  font-family: "Montserrat";
+  line-height: 1.25;
+  font-weight: 400;
+}
+
+strong {
+  color: #235789;
+  font-weight: 600;
+}
+
+/* Change link appearance */
+
+a {
+  color: #a8219d;
+  border-bottom: 3px solid #a8219d;
+  line-height: 2rem;
+}
+
+a:hover {
+  border-bottom: none;
+}
+
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+  float: left;
+  width: 30%;
+  padding: 5px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title-slide-custom .remark-slide-number {
+  display: none;
+}
+
+.title-slide {
+  background-position: 50% 20%;
+  background-size: 80%;
+  background-color: #3c3c3c;
+}
+
+.title-slide h1 {
+  font-family: "Paytone One", sans-serif;
+  font-size: 3.5em;
+  word-wrap: break-word;
+  font-weight: 400;
+  margin-bottom: -10px !important;
+  color: #ffffff;
+}
+
+.title-slide h2 {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-size: 2em;
+  color: #ffffff;
+  text-transform: none;
+}
+
+.title-slide h3 {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 200;
+  font-size: 1.5em;
+  color: #c1c9d0;
+  text-transform: none;
+}
+
+.title-slide a {
+  color: #fff;
+}
+
+/* Hack to remove slide number on the title slide */
+.title-slide .remark-slide-number {
+  color: #3c3c3c;
+}
+
+.title-slide {
+  padding: 2em;
+  position: relative;
+}
+
+.title-slide p {
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.75em;
+  font-weight: 300;
+}
+
+.inverse {
+  background-color: #3c3c3c;
+}
+
+.inverse h1 {
+  font-family: "Paytone One", sans-serif;
+  font-size: 3em;
+  word-wrap: break-word;
+  font-weight: 400;
+  margin-bottom: -10px !important;
+  color: #ffffff;
+}
+
+.inverse-two h1 {
+  font-family: "Paytone One", sans-serif;
+  font-size: 3em;
+  word-wrap: break-word;
+  font-weight: 400;
+  margin-bottom: -10px !important;
+  color: #3c3c3c;
+}
+
+.inverse-two {
+  background-color: #d8e2dc;
+}
+
+blockquote p {
+  color: #577590;
+  font-family: "Kreon", serif;
+  font-size: 100%;
+  font-style: italic;
+}
+
+blockquote {
+  border-left: solid 8px #3a4856;
+}
+
+.column-left {
+  width: 40%;
+  height: 92%;
+  float: left;
+  line-height: 1.5em;
+  margin-right: 0em;
+}
+
+.column-right {
+  width: 60%;
+  float: right;
+  padding-top: 1em;
+  margin: -5em;
+}
+
+.remark-slide thead,
+.remark-slide tfoot,
+.remark-slide tr:nth-child(even) {
+ /* background: #b8ddf2; */
+}
+
+/* Palmer penguins colors */
+pu {
+  color: Purple;
+}
+or {
+  color: DarkOrange;
+}
+cy {
+  color: #008b8b;
+}
+
+/* .remark-slide-content {
+  background-color: #FAFAFA;
+  border-top: 80px solid #23373B;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: 1em 2em 1em 2em
+}
+
+h1 {
+  font-weight: normal;
+  margin-top: -100px;
+  margin-left: -00px;
+  color: #FAFAFA;
+} */

@@ -1,0 +1,21 @@
+Quelques sites pour télécharger des données
+
+- https://datadryad.org/search
+- https://mcm.lternet.edu/power-search/data-set
+- https://www.pangaea.de/
+- https://www.naturalearthdata.com/
+- https://datastorre.stir.ac.uk/
+- https://www.dataquest.io/blog/free-datasets-for-projects/?utm_content=buffer1d70e&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+- https://www.re3data.org/browse/by-subject/
+- https://opendatainception.io/
+- https://vincentarelbundock.github.io/Rdatasets/datasets.html
+- https://www.capitalbikeshare.com/ (https://s3.amazonaws.com/capitalbikeshare-data/index.html)
+- https://data.opendatasoft.com/pages/home/
+- https://www.foretouverte.gouv.qc.ca/
+- https://data-search.nerc.ac.uk/geonetwork/srv/eng/catalog.search#/home
+- https://datahub.io/
+- https://www.makeovermonday.co.uk/data/
+- https://github.com/rfordatascience/tidytuesday
+- https://www.kaggle.com/datasets
+- https://www.seanoe.org/
+- https://www.polardata.ca/
