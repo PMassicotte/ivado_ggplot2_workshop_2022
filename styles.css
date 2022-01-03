@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand:wght@100;300;400&display=swap");
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Paytone+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kreon:wght@300&display=swap");
 
@@ -10,10 +10,10 @@
   font-size: 90%;
   font-family: "Roboto Mono", monospace;
   font-weight: 600;
-  color: #231f20;
-  background: #dee2e6;
-  border-radius: 3px;
-  padding: 1px 1px 1px 1px;
+  color: #4c4a4a;
+  background: #e9e9e9;
+  border-radius: 8px;
+  padding: 0 4px 1px;
 }
 
 .remark-code {
@@ -104,7 +104,7 @@ a:hover {
 }
 
 .title-slide h1 {
-  font-family: "Paytone One", sans-serif;
+  font-family: "Patrick Hand", sans-serif;
   font-size: 3.5em;
   word-wrap: break-word;
   font-weight: 400;
@@ -154,8 +154,9 @@ a:hover {
 }
 
 .inverse h1 {
-  font-family: "Paytone One", sans-serif;
-  font-size: 3em;
+  /*font-family: "Patrick Hand", sans-serif;*/
+  font-family: "Patrick Hand", sans-serif;
+  font-size: 4em;
   word-wrap: break-word;
   font-weight: 400;
   margin-bottom: -10px !important;
@@ -163,7 +164,7 @@ a:hover {
 }
 
 .inverse-two h1 {
-  font-family: "Paytone One", sans-serif;
+  font-family: "Patrick Hand", sans-serif;
   font-size: 3em;
   word-wrap: break-word;
   font-weight: 400;
@@ -226,10 +227,12 @@ cy {
   line-height: 1.5;
   padding: 1em 2em 1em 2em
 }
+*/
 
 h1 {
-  font-weight: normal;
+  /*font-weight: normal;
   margin-top: -100px;
   margin-left: -00px;
-  color: #FAFAFA;
-} */
+  color: #FAFAFA;*/
+  font-family: "Patrick Hand", sans-serif;
+}

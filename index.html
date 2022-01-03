@@ -19,7 +19,7 @@
     <script src="libs/clipboard/clipboard.min.js"></script>
     <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
     <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
-    <script>window.xaringanExtraClipboard(null, {"button":"Copy<\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i>Copy<\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
     <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
@@ -47,7 +47,7 @@ class: title-slide, center, bottom
 
 ![](https://ivado.ca/wp-content/themes/ivadooo/assets/svg/siteLogo.svg)
 
-January 26, 2022 (updated: 2021-12-29)
+January 26, 2022 (updated: 2022-01-01)
 
 ## Philippe Massicotte
 
@@ -113,22 +113,22 @@ January 26, 2022 (updated: 2021-12-29)
 
 --
 
-- Important aspect of data sciences
+- Important aspect of data sciences:
     - **Communicate information clearly and efficiently to the community.**
 
 --
 
-- Powerful tool to discovers patterns in the data.
+- Powerful tool to discovers patterns in the data:
     - It makes complex data more accessible: **reveal the data**.
 
 --
 
-- Bad graphics can be a reason for paper rejection.
+- Bad graphics can be a reason for paper rejection:
     - **Readers should rapidly understand the message you are trying to convey.**
 
 --
 
-- A picture is worth a thousand words.
+- A picture is worth a thousand words:
     - **Always, always, always plot your data!**
     - When possible, replace tables with more compelling figures.
 
@@ -211,13 +211,12 @@ Graphics, on the other hand, help to convey your message.
 
 # Datasaurus Dozen
 
---
-
-**These 13 datasets have the same statistical properties (*mean*, *variance*, *correlation*).** However, they look quite different.
-
---
-
 &lt;img src="index_files/figure-html/unnamed-chunk-3-1.svg" style="display: block; margin: auto;" /&gt;
+
+--
+
+**These 13 datasets have the same statistical properties (*mean*, *variance*, *correlation*).** However, they look quite different!
+
 
 ---
 
@@ -226,7 +225,7 @@ Graphics, on the other hand, help to convey your message.
 There are many types of visualization to chose from to present data. The decision depends on the data itself and how you want to present it to your audience.
 
 &lt;center&gt;
-    &lt;img src="https://activewizards.com/content/blog/How_to_Choose_the_Right_Chart_Type_[Infographic]/chart-types-infographics04.png" alt="drawing" height="375"/&gt;
+    &lt;img src="img/chart_types.png" alt="xxx" height="375"/&gt;
     &lt;figcaption&gt;
     &lt;a href="https://www.kdnuggets.com/2019/03/how-choose-right-chart-type.html"&gt;How to Choose the Right Chart Type&lt;/a&gt;
     &lt;/figcaption&gt;
@@ -249,6 +248,21 @@ class: inverse, center, middle
 
 `ggplot2` is a system for declaratively creating graphics, based on [The Grammar of Graphics](https://amzn.to/2ef1eWp).
 
+&gt; Presents a unique foundation for producing almost every quantitative graphic found in scientific journals, newspapers, statistical packages, and data visualization systems.
+
+&lt;center&gt;
+&lt;figure&gt;
+  &lt;img src="img/grammar_of_graphics.png" width="600"&gt;
+&lt;figcaption&gt;Source: &lt;a href="https://bit.ly/3JwHavs"&gt;Thomas de Beus&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/center&gt;
+
+---
+
+# ggplot2
+
+`ggplot2` is not part of base R, so it needs to be installed.
+
 .left-column[
 &lt;center&gt;
 &lt;figure&gt;
@@ -258,7 +272,6 @@ class: inverse, center, middle
 ]
 
 .right-column[
-`ggplot2` is not part of base R, so it needs to be installed.
 
 
 ```r
@@ -1023,14 +1036,6 @@ ggplot(
 .pull-right[
 &lt;img src="index_files/figure-html/unnamed-chunk-13-1.svg" style="display: block; margin: auto;" /&gt;
 ]
-
----
-
-It is also possible to make spatial map with `ggplot2`.
-
-&lt;center&gt;
-    &lt;img src="https://github.com/PMassicotte/makeovermonday/blob/master/graphs/makeovermonday_2019w50.png?raw=true" alt="drawing" width="700"/&gt;
-&lt;/center&gt;
 
 ---
 
@@ -2659,23 +2664,106 @@ ggsave("path/to/myfile.png", p, width = 5.97, height = 4.79, dpi = 300)
 
 ---
 
-# General guidelines
+class: inverse, center, middle
 
-Avoid unnecessary background and heavy gridlines.
-
-&lt;img src="index_files/figure-html/unnamed-chunk-31-1.svg" style="display: block; margin: auto;" /&gt;
+# Geographical maps
 
 ---
 
-# Useful references
+It is also possible to make spatial maps with `ggplot2`.
 
 &lt;center&gt;
-&lt;figure&gt;
-  &lt;img src="img/better_data_visualization.png" width="200"&gt;
-  &lt;figcaption&gt;
-    TODO use magik for a collage?
-&lt;/figcaption&gt;
-&lt;/figure&gt;
+    &lt;img src="https://github.com/PMassicotte/makeovermonday/blob/master/graphs/makeovermonday_2019w50.png?raw=true" alt="drawing" width="700"/&gt;
+&lt;/center&gt;
+
+---
+
+# Geographical maps
+
+There are many libraries that offer tools to work with spatial data in R:
+
+- `sf`, `terra`, `raster`, `tmap`, `leaflet`, `stars`, `mapview`, ..., and of course `ggplot2`.
+
+--
+
+Making maps with `ggplot2` is out of scope of this workshop. However, here is a quick overview with a simple example.
+
+--
+
+For this I will use `sf` and `rnaturalearth`.
+
+
+```r
+install.packages("sf")
+install.packages("rnaturalearth")
+
+library(sf)
+library(rnaturalearth)
+```
+
+---
+
+# Geographical maps
+
+Let's get some spatial data with `rnaturalearth`.
+
+
+```r
+germany &lt;- ne_countries(country = "germany", returnclass = "sf", scale = "large")
+germany
+```
+
+
+```
+## Simple feature collection with 1 feature and 1 field
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 5.85249 ymin: 47.27112 xmax: 15.02206 ymax: 55.06533
+## Geodetic CRS:  SOURCECRS
+##    sovereignt                       geometry
+## 50    Germany MULTIPOLYGON (((13.81572 48...
+```
+
+
+
+--
+
+Note that you can easily read a local shapefile with `sf::st_read()`.
+
+---
+
+# Geographical maps
+
+The *polygon* can be plotted with `geom_sf()`.
+
+&lt;small&gt;
+.pull-left[
+
+```r
+ggplot() +
+* geom_sf(
+*   data = germany,
+*   size = 0.25,
+*   fill = "#F7F5FB"
+* ) +
+  geom_sf(
+    data = railroads,
+    size = 0.15,
+    color = "#483A58"
+  )
+```
+]
+&lt;/small&gt;
+
+.pull-right[
+&lt;img src="index_files/figure-html/unnamed-chunk-35-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# Additional resources
+
+- [ggplo2 cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
 
 ---
 
