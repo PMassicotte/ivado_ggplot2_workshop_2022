@@ -47,7 +47,7 @@ class: title-slide, center, bottom
 
 ![](https://ivado.ca/wp-content/themes/ivadooo/assets/svg/siteLogo.svg)
 
-January 26, 2022 (updated: 2022-01-01)
+January 26, 2022 (updated: 2022-01-03)
 
 ## Philippe Massicotte
 
@@ -118,7 +118,7 @@ January 26, 2022 (updated: 2022-01-01)
 
 --
 
-- Powerful tool to discovers patterns in the data:
+- Powerful tool to discover patterns in the data:
     - It makes complex data more accessible: **reveal the data**.
 
 --
@@ -206,12 +206,21 @@ Graphics, on the other hand, help to convey your message.
 
 &lt;img src="index_files/figure-html/unnamed-chunk-2-1.svg" width="70%" style="display: block; margin: auto;" /&gt;
 
+---
+
+# Visualization to convey your message
+
+The same data but presented differently.
+
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.svg" style="display: block; margin: auto;" /&gt;
+
+Interesting reading: [Arctic Sea Ice Extent Second Highest in 18 Years at the end of 2021](https://www.severe-weather.eu/global-weather/arctic-sea-ice-second-highest-18-years-end-2021-rrc/)
 
 ---
 
 # Datasaurus Dozen
 
-&lt;img src="index_files/figure-html/unnamed-chunk-3-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.svg" style="display: block; margin: auto;" /&gt;
 
 --
 
@@ -222,7 +231,7 @@ Graphics, on the other hand, help to convey your message.
 
 # Different types of visualizations
 
-There are many types of visualization to chose from to present data. The decision depends on the data itself and how you want to present it to your audience.
+There are many types of visualization to choose from to present data. The decision depends on the data itself and how you want to present it to your audience.
 
 &lt;center&gt;
     &lt;img src="img/chart_types.png" alt="xxx" height="375"/&gt;
@@ -384,9 +393,9 @@ The dataset contain data for 344 penguins from 3 different species (&lt;pu&gt;&l
 &lt;small&gt;
 .pull-left[
 
-- `species`: penguin species (Adélie, Chinstrap and Gentoo)
+- `species`: penguin species (*Adélie*, *Chinstrap* and *Gentoo*)
 
-- `island`: island in Palmer Archipelago, Antarctica (Biscoe, Dream or Torgersen)
+- `island`: island in Palmer Archipelago, Antarctica (*Biscoe*, *Dream* and *Torgersen*)
 
 - `bill_length_mm`: bill length (millimeters)
 
@@ -396,9 +405,9 @@ The dataset contain data for 344 penguins from 3 different species (&lt;pu&gt;&l
 
 - `body_mass_g`: body mass (grams)
 
-- `sex`: penguin sex (female, male)
+- `sex`: penguin sex (*female*, *male*)
 
-- `year`: year of the study (2007, 2008 or 2009)
+- `year`: year of the study (2007, 2008 and 2009)
 
 ]
 &lt;/small&gt;
@@ -435,7 +444,7 @@ remotes::install_github("allisonhorst/palmerpenguins")
 
 ---
 
-# Exploring the penguins data
+# The palmer penguins data
 
 &lt;small&gt;
 
@@ -703,7 +712,7 @@ ggplot(
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-10-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-11-1.svg" style="display: block; margin: auto;" /&gt;
 ]
 
 --
@@ -733,7 +742,7 @@ ggplot(
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-11-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-12-1.svg" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -767,7 +776,7 @@ ggplot(
 --
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-12-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-13-1.svg" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1034,8 +1043,10 @@ ggplot(
 --
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-13-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-14-1.svg" style="display: block; margin: auto;" /&gt;
 ]
+
+Note the use of `na.rm = TRUE` in the `fct_reorder()` function.
 
 ---
 
@@ -1054,13 +1065,13 @@ Aesthetics such as *color*, *shape*, *size* of the displayed geoms can be contro
 geom_point(color = "red", size = 5) # All points will be red
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-15-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-16-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
-# Working with colors
+# Working with colours
 
-If we want to set a color **based on a variable**, we have to use the aesthetic: `aes(colour = variable)`.
+If we want to set a colour **based on a variable**, we have to use the aesthetic: `aes(colour = variable)`.
 
 
 ```r
@@ -1068,7 +1079,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g)) +
 * geom_point(aes(color = species))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-16-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-17-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1190,9 +1201,9 @@ background-position: 90% 8%
 
 # Color palettes for ggplot2
 
-There are many different R packages that provide color palettes.
+Many different R packages provide colour palettes.
 
-`paletteer` is a comprehensive collection of color palettes in R created by [@Emil_Hvitfeldt](https://twitter.com/Emil_Hvitfeldt). I have made a [paletteer gallery](https://github.com/PMassicotte/paletteer_gallery) to help me navigate all the palettes.
+`paletteer` is a comprehensive collection of colour palettes in R created by [@Emil_Hvitfeldt](https://twitter.com/Emil_Hvitfeldt). I have made a [paletteer gallery](https://github.com/PMassicotte/paletteer_gallery) to help me navigate all the palettes.
 
 .pull-left[
 
@@ -1216,14 +1227,14 @@ ggplot(
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-17-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-18-1.svg" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
-# Types of color scales
+# Types of colour scales
 
-**Attention to the type of color scale that is mapped to your data.**
+**Attention to the type of colour scale that is mapped to your data.**
 
 --
 
@@ -1254,14 +1265,14 @@ ggplot(
 
 .pull-right[
 
-&lt;img src="index_files/figure-html/unnamed-chunk-18-1.svg" height="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-19-1.svg" height="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
 # Working with size
 
-As we did for the colors, the size of the geom (ex.: dots) can be based on a particular variable.
+As we did for the colours, the size of the geom (ex.: dots) can be based on a particular variable.
 
 
 ```r
@@ -1269,13 +1280,13 @@ ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g)) +
 * geom_point(aes(size = body_mass_g))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-19-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-20-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # Continuous vs discrete mapping
 
-**Pay attention to the type of data you are mapping to a color or shape scale.**
+**Pay attention to the type of data you are mapping to a colour or shape scale.**
 
 If the mapped variable is **continuous**, the generated guide on the legend will be also **continuous**.
 
@@ -1291,7 +1302,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g)) +
 
 # Continuous vs discrete mapping
 
-**Pay attention to the type of data you are mapping to a color or shape scale.**
+**Pay attention to the type of data you are mapping to a colour or shape scale.**
 
 If the mapped variable is **discrete**, the generated guide on the legend will be also **discrete**. You can convert a continuous variable into a factor with the `factor()` function.
 
@@ -1550,7 +1561,7 @@ class: inverse, center, middle
 
 Faceting is a technique that allows displaying additional categorical variables in facets. Within `ggplot2`, there are two types of faceting: `facet_grid()` and `facet_wrap()`.
 
-&lt;img src="index_files/figure-html/unnamed-chunk-20-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-21-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1875,7 +1886,7 @@ Many components can be changed using the `theme()` function. Today we are going 
 
 --
 
-- The background aesthetics (color, grid, etc.).
+- The background aesthetics (colour, grid, etc.).
 
 --
 
@@ -2037,7 +2048,7 @@ p +
 
 # External themes
 
-- You are not limited to use `ggplot2` built-in themes.
+- You are not limited to using `ggplot2` built-in themes.
 
 - Here are some themes provided by the `ggthemes` and `ggpubr` packages.
 
@@ -2329,7 +2340,7 @@ p +
 
 # ggplot2 themes
 
-- There are many components that can be modified with the `theme()` function. 
+- Many components can be modified with the `theme()` function. 
 
 - Most of these components are modified using the `element_*()` functions.
 
@@ -2499,7 +2510,7 @@ class: inverse, center, middle
 
 # Combining plots
 
-There are many R packages that can be used to combine plots.  Here we are going to have a quick overview of the `patchwork` package. The package is not part of base R so it needs to be installed and loaded before you can use it.
+Many R packages can be used to combine plots.  Here we are going to have a quick overview of the `patchwork` package. The package is not part of base R so it needs to be installed and loaded before you can use it.
 
 .pull-left[
 &lt;center&gt;
@@ -2525,13 +2536,13 @@ library(patchwork)
 
 # Plots 1
 
-&lt;img src="index_files/figure-html/unnamed-chunk-23-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-24-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # Plot 2
 
-&lt;img src="index_files/figure-html/unnamed-chunk-24-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-25-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2544,7 +2555,7 @@ Combining horizontally is done using the `+` operator.
 p1 + p2
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-25-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-26-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2557,7 +2568,7 @@ Combining vertically is done using the `/` operator.
 p1 / p2
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-26-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-27-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2568,7 +2579,7 @@ p1 / p2
 (p1 + p2) / p1
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-27-1.svg" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-28-1.svg" width="100%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2680,17 +2691,17 @@ It is also possible to make spatial maps with `ggplot2`.
 
 # Geographical maps
 
-There are many libraries that offer tools to work with spatial data in R:
+Many libraries offer tools to work with spatial data in R:
 
 - `sf`, `terra`, `raster`, `tmap`, `leaflet`, `stars`, `mapview`, ..., and of course `ggplot2`.
 
 --
 
-Making maps with `ggplot2` is out of scope of this workshop. However, here is a quick overview with a simple example.
+Making maps with `ggplot2` is out of the scope of this workshop. However, here is a quick overview with a simple example.
 
 --
 
-For this I will use `sf` and `rnaturalearth`.
+For this, I will use `sf` and `rnaturalearth`.
 
 
 ```r
@@ -2719,7 +2730,7 @@ germany
 ## Geometry type: MULTIPOLYGON
 ## Dimension:     XY
 ## Bounding box:  xmin: 5.85249 ymin: 47.27112 xmax: 15.02206 ymax: 55.06533
-## Geodetic CRS:  SOURCECRS
+## CRS:           +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0
 ##    sovereignt                       geometry
 ## 50    Germany MULTIPOLYGON (((13.81572 48...
 ```
@@ -2756,7 +2767,7 @@ ggplot() +
 &lt;/small&gt;
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-35-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-36-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
