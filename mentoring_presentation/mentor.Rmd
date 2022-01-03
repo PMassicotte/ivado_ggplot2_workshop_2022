@@ -99,6 +99,8 @@ a {
 
 ```
 
+<!-- https://open.canada.ca/data/en/dataset/1318c39f-74ca-4f8a-b81c-95e1694553eb -->
+
 ## Who am I
 
 Research associate at the Takuvik Joint International Laboratory under the supervision of Dr. Marcel Babin.
@@ -202,46 +204,6 @@ df %>%
 
 ---
 
-class: inverse, center, middle
-
-# Mentoring opportunity
-
----
-
-## Mentoring opportunity
-
-- I am open to working with any kind of data (to the best of my knowledge). 
-
-- Can be related to (*but not limited*): 
-
-  - Environmental sciences
-  
-  - Your master/Ph.D. project
-  
-  - Any other fun datasets
-
----
-
-## Finding data
-
-Ideally, the data for your project should have these properties:
-
---
-
-- Passionate you!
-
-  - **Finding your dataset can be an interesting/formative experience!**
-  
-  - I encourage you to find your own data. 
-  
-  - If you do not have ideas, we can brainstorm together.
-  
---
-
-- Large enough to practice your **data cleaning**, **data visualization** and **modeling** skills.
-
----
-
 ```{r}
 url <- "https://pacgis01.dfo-mpo.gc.ca/FGPPublic/Nunavut_Ringed_Seal_Monitoring/Nunavut_ringed_seal_monitoring.csv"
 
@@ -257,8 +219,10 @@ class: inverse, center, middle
 
 ## Nunavut ringed seal monitoring
 
+<center>Mentoring opportunity: presentation of the data</center><br>
+
 <center>
-<img src="https://bit.ly/3FzRG2p" alt="Ringed seal looking at you with sea ice in the background" width="600"> 
+<img src="https://bit.ly/3FzRG2p" alt="Ringed seal looking at you with sea ice in the background" width="500"> 
 <small><figcaption>@ https://commons.wikimedia.org/</figcaption></small>
 </center>
 
@@ -333,11 +297,11 @@ df %>%
 
 --
 
-- Are they any **temporal changes** in the ringed seal population in the Nunavut?
+- Are there any **temporal changes** in the ringed seal population in the Nunavut?
 
 --
 
-- Links with environmental variables:
+- Can we link the population dynamic with environmental variables?
 
   - Water and air temperature
 
@@ -347,7 +311,47 @@ df %>%
 
 --
 
-- Fisheries (standing stock and food resources)
+- Influence of fisheries (standing stock and food resources)
+
+---
+
+class: inverse, center, middle
+
+# If this data is not motivating you!
+
+---
+
+## Working with different data
+
+- I am open to working with any kind of data (to the best of my knowledge). 
+
+- Can be related to (*but not limited*): 
+
+  - Environmental sciences
+  
+  - Your master/Ph.D. project
+  
+  - Any other fun datasets
+
+---
+
+## Data project advices
+
+Ideally, the data for your project should have these properties:
+
+--
+
+- Passionate you!
+
+  - **Finding your dataset can be an interesting/formative experience!**
+  
+  - I encourage you to find your own data. 
+  
+  - If you do not have ideas, we can brainstorm together.
+  
+--
+
+- Large enough to practice your **data cleaning**, **data visualization** and **modeling** skills.
 
 ---
 
