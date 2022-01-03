@@ -113,18 +113,6 @@ Research associate at the Takuvik Joint International Laboratory under the super
 
 ---
 
-## How to reach me
-
-`r fontawesome::fa("github", fill = "#9dadbc", height = "20px")` <small><font color="#9dadbc">  github.com/PMassicotte</font></small> <br>
-
-`r fontawesome::fa("envelope", fill = "#9dadbc", height = "20px")`  <small><font color="#9dadbc">philippe.massicotte@takuvik.ulaval.ca</font></small> <br>
-
-`r fontawesome::fa("twitter", fill = "#9dadbc", height = "20px")` <small><font color="#9dadbc">@philmassicotte</font></small> <br>
-
-`r fontawesome::fa("blog", fill = "#9dadbc", height = "20px")` <small><font color="#9dadbc">www.pmassicotte.com</font></small>
-
----
-
 ## What I do
 
 - I use `r fontawesome::fa("r-project", fill = "#9dadbc", height = "30px")` for my daily analysis.
@@ -250,7 +238,7 @@ Ideally, the data for your project should have these properties:
   
 --
 
-- Large enough to practice your **data cleaning** and **data visualization** skills.
+- Large enough to practice your **data cleaning**, **data visualization** and **modeling** skills.
 
 ---
 
@@ -343,22 +331,32 @@ df %>%
 
 ## Possible questions
 
-A short list of questions that could be explored with this data:
-
 --
 
-- Are they any temporal changes in the ringed seal population in the Nunavut?
+- Are they any **temporal changes** in the ringed seal population in the Nunavut?
 
 --
 
 - Links with environmental variables:
 
-  - Water and air temperature.
+  - Water and air temperature
 
-  - Sea ice concentration (from satellite imagery).
+  - Sea ice concentration (from satellite imagery)
 
-  - Water pollutants.
+  - Water pollutants
 
 --
 
-- Fisheries (standing stock and food resources).
+- Fisheries (standing stock and food resources)
+
+---
+
+## How to reach me
+
+`r fontawesome::fa("github", fill = "#9dadbc", height = "20px")` <small><font color="#9dadbc">  github.com/PMassicotte</font></small> <br>
+
+`r fontawesome::fa("envelope", fill = "#9dadbc", height = "20px")`  <small><font color="#9dadbc">philippe.massicotte@takuvik.ulaval.ca</font></small> <br>
+
+`r fontawesome::fa("twitter", fill = "#9dadbc", height = "20px")` <small><font color="#9dadbc">@philmassicotte</font></small> <br>
+
+`r fontawesome::fa("blog", fill = "#9dadbc", height = "20px")` <small><font color="#9dadbc">www.pmassicotte.com</font></small>
