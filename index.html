@@ -11,10 +11,6 @@
     <link href="libs/remark-css/robot-fonts.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
     <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
-    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
-    <script src="libs/tile-view/tile-view.js"></script>
-    <link href="libs/animate.css/animate.xaringan.css" rel="stylesheet" />
-    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
     <script src="libs/js-cookie/js.cookie.js"></script>
     <script src="libs/peerjs/peerjs.min.js"></script>
     <script src="libs/tiny.toast/toast.min.js"></script>
@@ -24,6 +20,7 @@
     <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
     <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
     <script>window.xaringanExtraClipboard(null, {"button":"<i>Copy<\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="libs/tachyons/tachyons.min.css" rel="stylesheet" />
     <script src="libs/kePrint/kePrint.js"></script>
     <link href="libs/lightable/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -50,7 +47,7 @@ class: title-slide, center, bottom
 
 ![](https://ivado.ca/wp-content/themes/ivadooo/assets/svg/siteLogo.svg)
 
-January 26, 2022 (updated: 2022-01-03)
+January 26, 2022 (updated: 2022-01-12)
 
 ## Philippe Massicotte
 
@@ -374,7 +371,7 @@ class: inverse, center, middle
 
 ---
 
-# The Palmer Penguins
+# The Palmer Penguins: the new iris
 
 Data were collected and made available by [Dr. Kristen Gorman](https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php) and the [Palmer Station, Antarctica LTER](https://pal.lternet.edu/), a member of the [Long Term Ecological Research Network](https://lternet.edu/). 
 
@@ -720,7 +717,7 @@ ggplot(
 
 --
 
-**What is wrong with this graph?**
+**What could be done to improve this graph?**
 
 ---
 
@@ -747,6 +744,10 @@ ggplot(
 .pull-right[
 &lt;img src="index_files/figure-html/unnamed-chunk-12-1.svg" style="display: block; margin: auto;" /&gt;
 ]
+
+--
+
+**Can we improve furthermore?**
 
 ---
 
@@ -856,6 +857,60 @@ ggplot(
 &lt;/style&gt;
 
 
+
+---
+
+## Adding a regression line
+
+Use `geom_smooth(method = "lm")` to add a linear regression line to your data.
+
+.pull-left[
+&lt;small&gt;
+
+```r
+ggplot(
+  penguins,
+  aes(
+    x = bill_length_mm,
+    y = body_mass_g
+  )
+) +
+  geom_point()+
+* geom_smooth(method = "lm")
+```
+&lt;/small&gt;
+]
+
+.pull-right[
+&lt;img src="index_files/figure-html/unnamed-chunk-14-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Adding a smoothing line
+
+If `method` is not specified, a `loess` or a `gam` model will be used depending on the number of points.
+
+.pull-left[
+&lt;small&gt;
+
+```r
+ggplot(
+  penguins,
+  aes(
+    x = bill_length_mm,
+    y = body_mass_g
+  )
+) +
+  geom_point()+
+* geom_smooth()
+```
+&lt;/small&gt;
+]
+
+.pull-right[
+&lt;img src="index_files/figure-html/unnamed-chunk-15-1.svg" style="display: block; margin: auto;" /&gt;
+]
 
 ---
 
@@ -1046,7 +1101,7 @@ ggplot(
 --
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-14-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-16-1.svg" style="display: block; margin: auto;" /&gt;
 ]
 
 Note the use of `na.rm = TRUE` in the `fct_reorder()` function.
@@ -1068,7 +1123,7 @@ Aesthetics such as *color*, *shape*, *size* of the displayed geoms can be contro
 geom_point(color = "red", size = 5) # All points will be red
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-16-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-18-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1082,7 +1137,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g)) +
 * geom_point(aes(color = species))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-17-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-19-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1230,7 +1285,7 @@ ggplot(
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-18-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-20-1.svg" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1268,7 +1323,7 @@ ggplot(
 
 .pull-right[
 
-&lt;img src="index_files/figure-html/unnamed-chunk-19-1.svg" height="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-21-1.svg" height="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1283,13 +1338,13 @@ ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g)) +
 * geom_point(aes(size = body_mass_g))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-20-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-22-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # Continuous vs discrete mapping
 
-**Pay attention to the type of data you are mapping to a colour or shape scale.**
+**Attention to the type of data you are mapping to a colour or shape scale.**
 
 If the mapped variable is **continuous**, the generated guide on the legend will be also **continuous**.
 
@@ -1305,7 +1360,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g)) +
 
 # Continuous vs discrete mapping
 
-**Pay attention to the type of data you are mapping to a colour or shape scale.**
+**Attention to the type of data you are mapping to a colour or shape scale.**
 
 If the mapped variable is **discrete**, the generated guide on the legend will be also **discrete**. You can convert a continuous variable into a factor with the `factor()` function.
 
@@ -1564,7 +1619,7 @@ class: inverse, center, middle
 
 Faceting is a technique that allows displaying additional categorical variables in facets. Within `ggplot2`, there are two types of faceting: `facet_grid()` and `facet_wrap()`.
 
-&lt;img src="index_files/figure-html/unnamed-chunk-21-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-23-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2539,13 +2594,13 @@ library(patchwork)
 
 # Plots 1
 
-&lt;img src="index_files/figure-html/unnamed-chunk-24-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-26-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # Plot 2
 
-&lt;img src="index_files/figure-html/unnamed-chunk-25-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-27-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2558,7 +2613,7 @@ Combining horizontally is done using the `+` operator.
 p1 + p2
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-26-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-28-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2571,7 +2626,7 @@ Combining vertically is done using the `/` operator.
 p1 / p2
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-27-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-29-1.svg" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2582,7 +2637,7 @@ p1 / p2
 (p1 + p2) / p1
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-28-1.svg" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-30-1.svg" width="100%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -2680,7 +2735,7 @@ ggsave("path/to/myfile.png", p, width = 5.97, height = 4.79, dpi = 300)
 
 class: inverse, center, middle
 
-# Geographical maps
+# Geographic maps
 
 ---
 
@@ -2692,7 +2747,7 @@ It is also possible to make spatial maps with `ggplot2`.
 
 ---
 
-# Geographical maps
+# Geographic maps
 
 Many libraries offer tools to work with spatial data in R:
 
@@ -2733,7 +2788,7 @@ germany
 ## Geometry type: MULTIPOLYGON
 ## Dimension:     XY
 ## Bounding box:  xmin: 5.85249 ymin: 47.27112 xmax: 15.02206 ymax: 55.06533
-## Geodetic CRS:  SOURCECRS
+## CRS:           +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0
 ##    sovereignt                       geometry
 ## 50    Germany MULTIPOLYGON (((13.81572 48...
 ```
@@ -2770,14 +2825,19 @@ ggplot() +
 &lt;/small&gt;
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-36-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-38-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
-# Additional resources
+&lt;!-- # ggplot2 cheat sheet --&gt;
 
-- [ggplo2 cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
+&lt;center&gt;
+&lt;figure&gt;
+  &lt;img src="img/ggplot2_cheat_sheet_1.png" width="780"&gt;
+  &lt;figcaption&gt;&lt;a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf"&gt;Download the ggplot2 cheat sheet&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/center&gt;
 
 ---
 

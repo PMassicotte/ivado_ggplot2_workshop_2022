@@ -39,6 +39,10 @@ options(htmltools.dir.version = FALSE, warn = -1)
 # names(xaringan:::list_css())
 
 # devtools::install_github("rstudio/fontawesome")
+# devtools::install_github("gadenbuie/xaringanExtra")
+# devtools::install_github("ropensci/rnaturalearthdata")
+# devtools::install_github("ropensci/rnaturalearthhires")
+
 library(tidyverse)
 library(ggpmthemes)
 library(patchwork)
@@ -467,7 +471,7 @@ class: inverse, center, middle
 
 ---
 
-# The Palmer Penguins
+# The Palmer Penguins: the new iris
 
 Data were collected and made available by [Dr. Kristen Gorman](https://www.uaf.edu/cfos/people/faculty/detail/kristen-gorman.php) and the [Palmer Station, Antarctica LTER](https://pal.lternet.edu/), a member of the [Long Term Ecological Research Network](https://lternet.edu/). 
 
@@ -666,7 +670,7 @@ ggplot(
 
 --
 
-**What is wrong with this graph?**
+**What could be done to improve this graph?**
 
 ---
 
@@ -694,6 +698,10 @@ ggplot(
 
 ```
 ]
+
+--
+
+**Can we improve furthermore?**
 
 ---
 
@@ -744,6 +752,62 @@ ggplot(
 ```
 
 `r chunk_reveal(chunk_name = "scatterplot1", title = "# Scatter plot")`
+
+---
+
+## Adding a regression line
+
+Use `geom_smooth(method = "lm")` to add a linear regression line to your data.
+
+.pull-left[
+<small>
+```{r geom-smooth-1, eval=FALSE}
+ggplot(
+  penguins,
+  aes(
+    x = bill_length_mm,
+    y = body_mass_g
+  )
+) +
+  geom_point()+
+  geom_smooth(method = "lm") #<<
+```
+</small>
+]
+
+.pull-right[
+```{r ref.label="geom-smooth-1", echo=FALSE}
+
+```
+]
+
+---
+
+## Adding a smoothing line
+
+If `method` is not specified, a `loess` or a `gam` model will be used depending on the number of points.
+
+.pull-left[
+<small>
+```{r geom-smooth-2, eval=FALSE}
+ggplot(
+  penguins,
+  aes(
+    x = bill_length_mm,
+    y = body_mass_g
+  )
+) +
+  geom_point()+
+  geom_smooth() #<<
+```
+</small>
+]
+
+.pull-right[
+```{r ref.label="geom-smooth-2", echo=FALSE}
+
+```
+]
 
 ---
 
@@ -977,7 +1041,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g)) +
 
 # Continuous vs discrete mapping
 
-**Pay attention to the type of data you are mapping to a colour or shape scale.**
+**Attention to the type of data you are mapping to a colour or shape scale.**
 
 If the mapped variable is **continuous**, the generated guide on the legend will be also **continuous**.
 
@@ -990,7 +1054,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g)) +
 
 # Continuous vs discrete mapping
 
-**Pay attention to the type of data you are mapping to a colour or shape scale.**
+**Attention to the type of data you are mapping to a colour or shape scale.**
 
 If the mapped variable is **discrete**, the generated guide on the legend will be also **discrete**. You can convert a continuous variable into a factor with the `factor()` function.
 
@@ -1543,7 +1607,7 @@ ggsave("path/to/myfile.png", p, width = 5.97, height = 4.79, dpi = 300)
 
 class: inverse, center, middle
 
-# Geographical maps
+# Geographic maps
 
 ---
 
@@ -1555,7 +1619,7 @@ It is also possible to make spatial maps with `ggplot2`.
 
 ---
 
-# Geographical maps
+# Geographic maps
 
 Many libraries offer tools to work with spatial data in R:
 
@@ -1615,7 +1679,7 @@ The *polygon* can be plotted with `geom_sf()`.
 
 <small>
 .pull-left[
-```{r, map_germany, eval=FALSE, crop = TRUE, dev='png', dpi=300}
+```{r, map_germany, eval=FALSE, crop = TRUE, dev='ragg_png', dpi=300}
 ggplot() +
   geom_sf( #<<
     data = germany, #<<
@@ -1632,15 +1696,20 @@ ggplot() +
 </small>
 
 .pull-right[
-```{r ref.label="map_germany", echo=FALSE, out.width="70%", crop = TRUE, dev='png', dpi=300}
+```{r ref.label="map_germany", echo=FALSE, out.width="70%", crop = TRUE, dev='ragg_png', dpi=300}
 ```
 ]
 
 ---
 
-# Additional resources
+<!-- # ggplot2 cheat sheet -->
 
-- [ggplo2 cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
+<center>
+<figure>
+  <img src="img/ggplot2_cheat_sheet_1.png" width="780">
+  <figcaption><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf">Download the ggplot2 cheat sheet</a></figcaption>
+</figure>
+</center>
 
 ---
 
