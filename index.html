@@ -47,7 +47,7 @@ class: title-slide, center, bottom
 
 ![](https://ivado.ca/wp-content/themes/ivadooo/assets/svg/siteLogo.svg)
 
-January 26, 2022 (updated: 2022-01-12)
+January 26, 2022 (updated: 2022-01-16)
 
 ## Philippe Massicotte
 
@@ -889,7 +889,7 @@ ggplot(
 
 ## Adding a smoothing line
 
-If `method` is not specified, a `loess` or a `gam` model will be used depending on the number of points.
+If the argument `method` is not specified, a `loess` or a `gam` model will be used (depending on the number of points to be fitted).
 
 .pull-left[
 &lt;small&gt;
@@ -1693,6 +1693,31 @@ ggplot(
 &lt;img src="index_files/figure-html/facet1_auto_03_output-1.svg" style="display: block; margin: auto;" /&gt;
 ]
 
+---
+count: false
+ 
+# 1D faceting
+.panel1-facet1-auto[
+
+```r
+ggplot(
+  data = drop_na(penguins, sex),
+  aes(
+    x = body_mass_g,
+    y = bill_depth_mm,
+    color = sex
+  )
+) +
+  geom_point() +
+  facet_wrap(~species) +
+* facet_wrap(~species, scales = "free_x")
+```
+]
+ 
+.panel2-facet1-auto[
+&lt;img src="index_files/figure-html/facet1_auto_04_output-1.svg" style="display: block; margin: auto;" /&gt;
+]
+
 &lt;style&gt;
 .panel1-facet1-auto {
   color: black;
@@ -1711,107 +1736,6 @@ ggplot(
   font-size: 80%
 }
 .panel3-facet1-auto {
-  color: black;
-  width: NA%;
-  hight: 33%;
-  float: left;
-  padding-left: 1%;
-  font-size: 80%
-}
-&lt;/style&gt;
-
-
-
----
-
-
-
-count: false
- 
-# 1D faceting
-.panel1-facet2-auto[
-
-```r
-*ggplot(
-* data = drop_na(penguins, sex),
-* aes(
-*   x = body_mass_g,
-*   y = bill_depth_mm,
-*   color = sex
-* )
-*) 
-```
-]
- 
-.panel2-facet2-auto[
-&lt;img src="index_files/figure-html/facet2_auto_01_output-1.svg" style="display: block; margin: auto;" /&gt;
-]
-
----
-count: false
- 
-# 1D faceting
-.panel1-facet2-auto[
-
-```r
-ggplot(
-  data = drop_na(penguins, sex),
-  aes(
-    x = body_mass_g,
-    y = bill_depth_mm,
-    color = sex
-  )
-) +
-* geom_point()
-```
-]
- 
-.panel2-facet2-auto[
-&lt;img src="index_files/figure-html/facet2_auto_02_output-1.svg" style="display: block; margin: auto;" /&gt;
-]
-
----
-count: false
- 
-# 1D faceting
-.panel1-facet2-auto[
-
-```r
-ggplot(
-  data = drop_na(penguins, sex),
-  aes(
-    x = body_mass_g,
-    y = bill_depth_mm,
-    color = sex
-  )
-) +
-  geom_point() +
-* facet_wrap(~species, scales = "free_x")
-```
-]
- 
-.panel2-facet2-auto[
-&lt;img src="index_files/figure-html/facet2_auto_03_output-1.svg" style="display: block; margin: auto;" /&gt;
-]
-
-&lt;style&gt;
-.panel1-facet2-auto {
-  color: black;
-  width: 38.6060606060606%;
-  hight: 32%;
-  float: left;
-  padding-left: 1%;
-  font-size: 80%
-}
-.panel2-facet2-auto {
-  color: black;
-  width: 59.3939393939394%;
-  hight: 32%;
-  float: left;
-  padding-left: 1%;
-  font-size: 80%
-}
-.panel3-facet2-auto {
   color: black;
   width: NA%;
   hight: 33%;
@@ -2398,19 +2322,23 @@ p +
 
 # ggplot2 themes
 
-- Many components can be modified with the `theme()` function. 
+- Many components can be modified with the `theme()` function. For example:
+
+  - `axis.title`: Title appearance (font, color, ...)
+  
+  - `axis.ticks`: Axes ticks appearance (length, color, position, ...)
+  
+  - `plot.background`: Background properties (color, ...)
+  
+  - `plot.margin`: Margins around the plot.
+  
+--
 
 - Most of these components are modified using the `element_*()` functions.
 
---
-
   - `element_rect()`: for borders and backgrounds
 
---
-
   - `element_line()`: for lines elements
-
---
 
   - `element_text()`: for text
 

@@ -785,7 +785,7 @@ ggplot(
 
 ## Adding a smoothing line
 
-If `method` is not specified, a `loess` or a `gam` model will be used depending on the number of points.
+If the argument `method` is not specified, a `loess` or a `gam` model will be used (depending on the number of points to be fitted).
 
 .pull-left[
 <small>
@@ -1176,27 +1176,11 @@ ggplot(
   )
 ) +
   geom_point() +
-  facet_wrap(~species)
-```
-
-`r chunk_reveal(chunk_name = "facet1", title = "# 1D faceting")`
-
----
-
-```{r, facet2, include = FALSE}
-ggplot(
-  data = drop_na(penguins, sex),
-  aes(
-    x = body_mass_g,
-    y = bill_depth_mm,
-    color = sex
-  )
-) +
-  geom_point() +
+  facet_wrap(~species) +
   facet_wrap(~species, scales = "free_x")
 ```
 
-`r chunk_reveal(chunk_name = "facet2", title = "# 1D faceting")`
+`r chunk_reveal(chunk_name = "facet1", title = "# 1D faceting")`
 
 ---
 
@@ -1322,19 +1306,23 @@ p +
 
 # ggplot2 themes
 
-- Many components can be modified with the `theme()` function. 
+- Many components can be modified with the `theme()` function. For example:
+
+  - `axis.title`: Title appearance (font, color, ...)
+  
+  - `axis.ticks`: Axes ticks appearance (length, color, position, ...)
+  
+  - `plot.background`: Background properties (color, ...)
+  
+  - `plot.margin`: Margins around the plot.
+  
+--
 
 - Most of these components are modified using the `element_*()` functions.
 
---
-
   - `element_rect()`: for borders and backgrounds
 
---
-
   - `element_line()`: for lines elements
-
---
 
   - `element_text()`: for text
 
