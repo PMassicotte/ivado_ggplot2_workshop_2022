@@ -47,7 +47,7 @@ class: title-slide, center, bottom
 
 ![](https://ivado.ca/wp-content/themes/ivadooo/assets/svg/siteLogo.svg)
 
-January 26, 2022 (updated: 2022-01-16)
+January 26, 2022 (updated: 2022-01-22)
 
 ## Philippe Massicotte
 
@@ -455,19 +455,19 @@ penguins
 
 ```
 ## # A tibble: 344 × 8
-##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
-##  1 Adelie  Torgersen           39.1          18.7               181        3750
-##  2 Adelie  Torgersen           39.5          17.4               186        3800
-##  3 Adelie  Torgersen           40.3          18                 195        3250
-##  4 Adelie  Torgersen           NA            NA                  NA          NA
-##  5 Adelie  Torgersen           36.7          19.3               193        3450
-##  6 Adelie  Torgersen           39.3          20.6               190        3650
-##  7 Adelie  Torgersen           38.9          17.8               181        3625
-##  8 Adelie  Torgersen           39.2          19.6               195        4675
-##  9 Adelie  Torgersen           34.1          18.1               193        3475
-## 10 Adelie  Torgersen           42            20.2               190        4250
-## # … with 334 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex     year
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750 male    2007
+##  2 Adelie  Torgersen           39.5          17.4               186        3800 female  2007
+##  3 Adelie  Torgersen           40.3          18                 195        3250 female  2007
+##  4 Adelie  Torgersen           NA            NA                  NA          NA &lt;NA&gt;    2007
+##  5 Adelie  Torgersen           36.7          19.3               193        3450 female  2007
+##  6 Adelie  Torgersen           39.3          20.6               190        3650 male    2007
+##  7 Adelie  Torgersen           38.9          17.8               181        3625 female  2007
+##  8 Adelie  Torgersen           39.2          19.6               195        4675 male    2007
+##  9 Adelie  Torgersen           34.1          18.1               193        3475 &lt;NA&gt;    2007
+## 10 Adelie  Torgersen           42            20.2               190        4250 &lt;NA&gt;    2007
+## # … with 334 more rows
 ```
 &lt;/small&gt;
 
@@ -493,24 +493,20 @@ A `ggplot2` plot is built layer by layer by using the `+` operator.
 &lt;small&gt;
 
 ```
-##  [1] "geom_abline"            "geom_area"              "geom_bar"              
-##  [4] "geom_bin_2d"            "geom_bin2d"             "geom_blank"            
-##  [7] "geom_boxplot"           "geom_col"               "geom_contour"          
-## [10] "geom_contour_filled"    "geom_count"             "geom_crossbar"         
-## [13] "geom_curve"             "geom_density"           "geom_density_2d"       
-## [16] "geom_density_2d_filled" "geom_density2d"         "geom_density2d_filled" 
-## [19] "geom_dotplot"           "geom_errorbar"          "geom_errorbarh"        
-## [22] "geom_freqpoly"          "geom_function"          "geom_hex"              
-## [25] "geom_histogram"         "geom_hline"             "geom_jitter"           
-## [28] "geom_label"             "geom_line"              "geom_linerange"        
-## [31] "geom_map"               "geom_path"              "geom_point"            
-## [34] "geom_pointrange"        "geom_polygon"           "geom_qq"               
-## [37] "geom_qq_line"           "geom_quantile"          "geom_raster"           
-## [40] "geom_rect"              "geom_ribbon"            "geom_rug"              
-## [43] "geom_segment"           "geom_sf"                "geom_sf_label"         
-## [46] "geom_sf_text"           "geom_smooth"            "geom_spoke"            
-## [49] "geom_step"              "geom_text"              "geom_tile"             
-## [52] "geom_violin"            "geom_vline"
+##  [1] "geom_abline"            "geom_area"              "geom_bar"               "geom_bin_2d"           
+##  [5] "geom_bin2d"             "geom_blank"             "geom_boxplot"           "geom_col"              
+##  [9] "geom_contour"           "geom_contour_filled"    "geom_count"             "geom_crossbar"         
+## [13] "geom_curve"             "geom_density"           "geom_density_2d"        "geom_density_2d_filled"
+## [17] "geom_density2d"         "geom_density2d_filled"  "geom_dotplot"           "geom_errorbar"         
+## [21] "geom_errorbarh"         "geom_freqpoly"          "geom_function"          "geom_hex"              
+## [25] "geom_histogram"         "geom_hline"             "geom_jitter"            "geom_label"            
+## [29] "geom_line"              "geom_linerange"         "geom_map"               "geom_path"             
+## [33] "geom_point"             "geom_pointrange"        "geom_polygon"           "geom_qq"               
+## [37] "geom_qq_line"           "geom_quantile"          "geom_raster"            "geom_rect"             
+## [41] "geom_ribbon"            "geom_rug"               "geom_segment"           "geom_sf"               
+## [45] "geom_sf_label"          "geom_sf_text"           "geom_smooth"            "geom_spoke"            
+## [49] "geom_step"              "geom_text"              "geom_tile"              "geom_violin"           
+## [53] "geom_vline"
 ```
 &lt;/small&gt;
 
@@ -1308,17 +1304,21 @@ ggplot(
 
 &lt;br&gt;
 
+&lt;small&gt;
 
 ```r
 ggplot(
-  data = mpg,
-  mapping = aes(x = class)
-) +
-  geom_bar(
-    size = 1,
-*   aes(fill = fl, color = class)
+  data = sw,
+  mapping = aes(
+    x = height,
+    y = forcats::fct_reorder(name, height),
+*   fill = height,
+*   color = eye_color
   )
+) +
+  geom_col(size = 1)
 ```
+&lt;/small&gt;
 ]
 
 .pull-right[
@@ -1330,7 +1330,7 @@ ggplot(
 
 # Working with size
 
-As we did for the colours, the size of the geom (ex.: dots) can be based on a particular variable.
+As we did for the colours, the size of the geom (ex.: points) can be based on a particular variable.
 
 
 ```r
@@ -1611,11 +1611,11 @@ ggplot(
 
 class: inverse, center, middle
 
-# Faceting
+# Faceting (small multiples)
 
 ---
 
-# Faceting
+# Faceting (small multiples)
 
 Faceting is a technique that allows displaying additional categorical variables in facets. Within `ggplot2`, there are two types of faceting: `facet_grid()` and `facet_wrap()`.
 

@@ -1007,16 +1007,21 @@ ggplot(
 
 <br>
 
+<small>
 ```{r color-vs-fill, eval=FALSE}
 ggplot(
-  data = mpg,
-  mapping = aes(x = class)
-) +
-  geom_bar(
-    size = 1,
-    aes(fill = fl, color = class) #<<
+  data = sw,
+  mapping = aes(
+    x = height,
+    y = forcats::fct_reorder(name, height),
+    fill = height, #<<
+    color = eye_color #<<
   )
+) +
+  geom_col(size = 1)
+
 ```
+</small>
 ]
 
 .pull-right[
@@ -1030,7 +1035,7 @@ ggplot(
 
 # Working with size
 
-As we did for the colours, the size of the geom (ex.: dots) can be based on a particular variable.
+As we did for the colours, the size of the geom (ex.: points) can be based on a particular variable.
 
 ```{r, fig.height = 3.5}
 ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g)) +
@@ -1134,11 +1139,11 @@ ggplot(
 
 class: inverse, center, middle
 
-# Faceting
+# Faceting (small multiples)
 
 ---
 
-# Faceting
+# Faceting (small multiples)
 
 Faceting is a technique that allows displaying additional categorical variables in facets. Within `ggplot2`, there are two types of faceting: `facet_grid()` and `facet_wrap()`.
 
