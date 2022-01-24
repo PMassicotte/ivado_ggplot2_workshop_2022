@@ -183,7 +183,7 @@ January 26, 2022 (updated: `r Sys.Date()`)
 
 - A picture is worth a thousand words:
     - **Always, always, always plot your data!**
-    - When possible, replace tables with more compelling figures.
+    - When possible, replace tables with figures.
 
 ---
 
@@ -437,29 +437,31 @@ TidyTuesday is a weekly challenge where people use (mostly) `ggplot2` to explore
 
 As already said, `ggplot2` can be intimidating at first. However, with some practice, you will be able to make stunning graphics.
 
+<center>
 <div class="row">
     <div class="column">
-        <img src="https://christianburkhart.de/static/30599239f2edece767ae2434a6665c60/47218/tidytuesday_birds.png"
-            alt="Snow" style="width:80%">
+        <img src="https://github.com/loreabad6/TidyTuesday/blob/master/plot/2022_week_03.png?raw=true"
+            alt="Who makes the best chocolate with Ecuadorian beans?" style="width:120%">
         <figcaption>
-            Graphic by <a href=https://twitter.com/ChBurkhart">@ChBurkhart</a>
+            Graphic by <a href=https://twitter.com/loreabad6>@loreabad6</a>
         </figcaption>
     </div>
     <div class="column">
         <img src="https://github.com/jkaupp/tidytuesdays/blob/437b47ad14bd3d6d66dca41e0a4a84c9d96716fb/2020/week44/tw44_plot.png?raw=true"
-            alt="Forest" style="width:80%">
+            alt="Wind power generation in the Maritimes" style="width:80%">
         <figcaption>
             Graphic by <a href=https://twitter.com/jakekaupp">@jakekaupp</a>
         </figcaption>
     </div>
     <div class="column">
-        <img src="https://github.com/gkaramanis/aRtist/blob/main/genuary/2021/2021-3/2021-3.png?raw=true" alt="Forest"
+        <img src="https://github.com/gkaramanis/aRtist/blob/main/genuary/2021/2021-3/2021-3.png?raw=true" alt="Person's face ploted using ggplot2"
             style="width:80%">
         <figcaption>
             Graphic by <a href=https://twitter.com/geokaramanis?lang=en">@geokaramanis</a>
         </figcaption>
     </div>
 </div>
+</center>
 
 **Most people participating in the TidyTuesday challenges share their code on Github. It is a great way to learn more advanced techniques!**
 
@@ -488,7 +490,7 @@ Data were collected and made available by [Dr. Kristen Gorman](https://www.uaf.e
 
 # The Palmer Penguins
 
-The dataset contain data for 344 penguins from 3 different species (<pu><b>Chinstrap</b></pu>, <cy><b>Gentoo</b></cy> and <or><b>Adélie</b></or>) collected from 3 islands in the Palmer Archipelago, Antarctica.
+The dataset contain data for **344 penguins** from **3 different species** (<pu><b>Chinstrap</b></pu>, <cy><b>Gentoo</b></cy> and <or><b>Adélie</b></or>) collected from **3 islands** in the Palmer Archipelago, Antarctica.
 
 <small>
 .pull-left[
@@ -569,7 +571,7 @@ A `ggplot2` plot is built layer by layer by using the `+` operator.
 
 # The geoms 
 
-`geoms` is the abbreviation for *geometric objects* which are used to specify which type of graphic you want to produce (boxplot, barplot, scatter, ...). All `ggplot2` geoms start with the `geom_` prefix.
+`geoms` is the abbreviation for *geometric objects* which are used to specify which type of graphic you want to produce (**boxplot**, **barplot**, **scatterplot**, **histogram**, ...). All `ggplot2` geoms start with the `geom_` prefix.
 
 <small>
 ```{r, echo = FALSE}
@@ -1182,7 +1184,9 @@ ggplot(
 ) +
   geom_point() +
   facet_wrap(~species) +
-  facet_wrap(~species, scales = "free_x")
+  facet_wrap(~species, scales = "free_x") +
+  facet_wrap(~species, scales = "free_y") +
+  facet_wrap(~species, scales = "free")
 ```
 
 `r chunk_reveal(chunk_name = "facet1", title = "# 1D faceting")`
@@ -1400,7 +1404,7 @@ library(patchwork)
 
 ---
 
-# Plots 1
+# Plot #1
 
 ```{r, echo = FALSE}
 p1 <- penguins %>%
@@ -1437,7 +1441,7 @@ p1
 
 ---
 
-# Plot 2
+# Plot #2
 
 ```{r, echo = FALSE}
 df <- penguins_raw %>% 
