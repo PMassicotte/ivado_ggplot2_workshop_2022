@@ -132,7 +132,7 @@ January 26, 2022 (updated: `r Sys.Date()`)
 
 # Outline
 
-- What is data visualization?
+- Why data visualization?
 
 - `ggplot2` basic plots
     - Histograms and bar plots
@@ -289,9 +289,11 @@ df_viz %>%
   ) +
   labs(
     x = NULL,
-    y = quote("Sea ice extent" ~ (km^2 %*% 10^6))
+    y = quote("Sea ice extent" ~ (km^2 %*% 10^6)),
+    caption = paste("Source:", file)
   ) +
   theme(
+    plot.caption = element_text(size = 8, color = "gray50"),
     axis.ticks = element_blank(),
     legend.title = element_blank(),
     legend.justification = c(0, 0),
@@ -327,6 +329,30 @@ datasaurus_dozen %>%
 --
 
 **These 13 datasets have the same statistical properties (*mean*, *variance*, *correlation*).** However, they look quite different!
+
+---
+
+# Datasaurus Dozen
+
+```{r animate_datasaurus, echo=FALSE, dev='png', dpi=120}
+library(gganimate)
+
+datasaurus_dozen2 <- datasaurus_dozen %>% 
+  group_by(dataset) %>% 
+  mutate(correlation = cor(x, y)) %>% 
+  mutate(variance = var(x, y)) %>% 
+  mutate(across(c(x, y), list(mean = mean))) %>% 
+  mutate(across(correlation:y_mean, ~round(., digits = 2)))
+
+ggplot(datasaurus_dozen2, aes(x=x, y=y))+
+  geom_point()+
+  geom_text(aes(x = 100, y = 100, label = paste("Correlation:", correlation)), hjust = 1) +
+  geom_text(aes(x = 100, y = 90, label = paste("Variance:", variance)), hjust = 1) +
+  geom_text(aes(x = 100, y = 80, label = paste("x mean:", x_mean)), hjust = 1) +
+  geom_text(aes(x = 100, y = 70, label = paste("y mean:", y_mean)), hjust = 1) +
+  theme_minimal() +
+  transition_states(dataset, 3, 1)
+```
 
 
 ---
