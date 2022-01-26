@@ -51,6 +51,7 @@ library(fontawesome)
 library(palmerpenguins)
 library(sf)
 library(rnaturalearth)
+library(ragg)
 
 theme_set(theme_light_modified(base_family = "Montserrat"))
 
@@ -329,31 +330,6 @@ datasaurus_dozen %>%
 --
 
 **These 13 datasets have the same statistical properties (*mean*, *variance*, *correlation*).** However, they look quite different!
-
----
-
-# Datasaurus Dozen
-
-```{r animate_datasaurus, echo=FALSE, dev='png', dpi=120}
-library(gganimate)
-
-datasaurus_dozen2 <- datasaurus_dozen %>% 
-  group_by(dataset) %>% 
-  mutate(correlation = cor(x, y)) %>% 
-  mutate(variance = var(x, y)) %>% 
-  mutate(across(c(x, y), list(mean = mean))) %>% 
-  mutate(across(correlation:y_mean, ~round(., digits = 2)))
-
-ggplot(datasaurus_dozen2, aes(x=x, y=y))+
-  geom_point()+
-  geom_text(aes(x = 100, y = 100, label = paste("Correlation:", correlation)), hjust = 1) +
-  geom_text(aes(x = 100, y = 90, label = paste("Variance:", variance)), hjust = 1) +
-  geom_text(aes(x = 100, y = 80, label = paste("x mean:", x_mean)), hjust = 1) +
-  geom_text(aes(x = 100, y = 70, label = paste("y mean:", y_mean)), hjust = 1) +
-  theme_minimal() +
-  transition_states(dataset, 3, 1)
-```
-
 
 ---
 
